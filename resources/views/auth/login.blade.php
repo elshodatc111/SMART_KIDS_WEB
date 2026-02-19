@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Kirish</title>
+  <title>{{ __('messages.welcome') }}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
@@ -33,35 +33,35 @@
                                         <div class="logo-container">
                                             <i class="bi bi-person-heart text-primary" style="font-size: 3rem;"></i>
                                         </div>
-                                        <h5 class="card-title text-center pb-0 fs-4">Tizimga kirish</h5>
+                                        <h5 class="card-title text-center pb-0 fs-4">{{ __('messages.welcome') }}</h5>
                                     </div>
                                     @if($errors->any())
                                         <div class="alert alert-danger alert-dismissible fade show small" role="alert">
                                             <i class="bi bi-exclamation-octagon me-1"></i>
-                                            Ma'lumotlar xato kiritildi!
+                                            {{ __('messages.login_error') }}
                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                     @endif
                                     <form action="{{ url('/login') }}" method="POST" class="row g-3 needs-validation" novalidate>
                                         @csrf
                                         <div class="col-12">
-                                            <label for="yourphone" class="form-label">Telefon raqam</label>
+                                            <label for="yourphone" class="form-label">{{ __('messages.login_phone') }}</label>
                                             <div class="input-group has-validation">
                                                 <input type="text" name="phone" class="form-control phone @error('phone') is-invalid @enderror" id="yourphone" value="{{ old('phone')==null?'+998': old('phone') }}" required>
                                                 @error('phone')
                                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                                 @else
-                                                    <div class="invalid-feedback">Iltimos, telefon raqamingizni kiriting!</div>
+                                                    <div class="invalid-feedback">{{ __('messages.login_phone_error') }}</div>
                                                 @enderror
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Parol</label>
+                                            <label for="yourPassword" class="form-label">{{ __('messages.login_password') }}</label>
                                             <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="yourPassword" required>
-                                            <div class="invalid-feedback">Iltimos, parolingizni kiriting!</div>
+                                            <div class="invalid-feedback">{{ __('messages.kogin_password_empty_error') }}</div>
                                         </div>
                                         <div class="col-12">
-                                            <button class="btn btn-primary w-100" type="submit">Kirish</button>
+                                            <button class="btn btn-primary w-100" type="submit">{{ __('messages.login') }}</button>
                                         </div>
                                     </form>
                                 </div>
