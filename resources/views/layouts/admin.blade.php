@@ -43,15 +43,19 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 
-  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/chart.js/chart.umd.js') }}"></script>
-  <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/quill/quill.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
-  <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
-  <script src="{{ asset('assets/js/main.js') }}"></script>
-
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/chart.js/chart.umd.js') }}"></script>
+    <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/quill/quill.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script>
+    <script>
+        $(".phone").inputmask("+998 99 999 9999");
+    </script>
 </body>
 
 </html>

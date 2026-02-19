@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,22 +15,14 @@ class AuthWebController extends Controller{
         return view('auth.login');
     }
 
-    public function login(Request $request){
-        $credentials = $request->validate([
-            'phone' => ['required', 'string', 'max:15'],
-            'password' => ['required'],
-        ], [
-            'phone.required' => 'Telefon raqam kiritilishi shart',
-            'password.required' => 'Parol kiritilishi shart',
-        ]);
-
-        if (Auth::attempt($credentials)) {
+    public function login(LoginRequest $request){
+        $credentials = $request->only('phone', 'password');
+        $remember = $request->filled('remember');
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended(route('home'));
         }
-        return back()->withErrors([
-            'phone' => 'Berilgan ma’lumotlar bazamizda topilmadi.',
-        ])->onlyInput('phone');
+        return back()->withErrors(['phone' => 'Telefon raqam yoki parol xato kiritildi.',])->withInput($request->only('phone'));
     }
 
     public function logout(Request $request){
@@ -38,4 +31,5 @@ class AuthWebController extends Controller{
         $request->session()->regenerateToken();
         return redirect()->route('login');
     }
+    
 }
