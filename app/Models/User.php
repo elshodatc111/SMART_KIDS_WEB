@@ -16,6 +16,7 @@ class User extends Authenticatable{
         'phone',
         'phone_two',
         'address',
+        'amount',
         'birthday',
         'passport_number',
         'type',

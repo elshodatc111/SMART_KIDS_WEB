@@ -1,0 +1,16 @@
+<?php
+return [
+    'dashboard' => 'Bosh sahifa',
+    'child' => 'Bolalar',
+    'groups'=> 'Guruhlar',
+    'emploes' => 'Xodimlar',
+    'cashier' => 'Kassa',
+    'attendance' => 'Davomat',
+    'staff_attendance' => 'Xodimlar davomadi',
+    'child_attendance' => 'Bolalar davomadi',
+    'lead' => 'Arizalar (Lead)',
+    'staff_leads' => 'Xodimlikka nomzodlar',
+    'child_leads' => 'Qabulga arizalar',
+    'finance' => 'Moliya',
+    'statistics' => 'Statistika',
+];

@@ -1,0 +1,28 @@
+<?php
+return [
+    'emploes' => 'Xodimlar',
+    'name' => 'FIO',
+    'phone' => 'Telefon raqami',
+    'address' => 'Manzil',
+    'amount' => 'Maosh miqdori',
+    'birthday' => 'Tug\'ilgan sana',
+    'passport_number' => 'Pasport seriyasi',
+    'type' => 'Lavozimi',
+    'type_about' => 'Lavozim haqida ma\'lumot',
+    'status' => 'Holati',
+    'create_data' => 'Xodim qo\'shilgan sana',
+    'create' => 'Yangi xodim qo\'shish',
+    'cancel' => 'Bekor qilish',
+    'save' => 'Saqlash',
+    'no_emploes' => 'Xodimlar mavjud emas',
+    'success' => 'Xodim muvaffaqiyatli qo\'shildi!',
+    'validate' => [
+        'name_required' => 'Xodimning ismini kiritish shart!',
+        'phone_required' => 'Telefon raqamini kiriting!',
+        'phone_unique' => 'Ushbu telefon raqami allaqachon ro‘yxatdan o‘tkazilgan!',
+        'passport_number_required' => 'Pasport ma’lumotlarini kiritish shart!',
+        'passport_number_unique' => 'Ushbu pasport seriyasi bazada mavjud!',
+        'type_required' => 'Xodimning lavozimini tanlang!',
+        'amount_required' => 'Maosh miqdorini kiriting!',
+    ],
+];

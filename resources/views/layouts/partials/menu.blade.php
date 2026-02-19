@@ -1,86 +1,94 @@
 <li class="nav-item">
-  <a class="nav-link " href="#">
-    <i class="bi bi-grid"></i>
-    <span>Bosh sahifa</span>
+  <a class="nav-link" href="#">
+    <i class="bi bi-house-heart"></i>
+    <span>{{ __('menu.dashboard') }}</span>
   </a>
 </li>
+
 <li class="nav-item">
   <a class="nav-link collapsed" href="#">
-    <i class="bi bi-grid"></i>
-    <span>Bolalar</span>
+    <i class="bi bi-backpack4"></i>
+    <span>{{ __('menu.child') }}</span>
   </a>
 </li>
+
 <li class="nav-item">
   <a class="nav-link collapsed" href="#">
-    <i class="bi bi-grid"></i>
-    <span>Guruhlar</span>
+    <i class="bi bi-collection"></i>
+    <span>{{ __('menu.groups') }}</span>
   </a>
 </li>
+
+<li class="nav-item">
+  <a class="nav-link collapsed" href="{{ route('emploes') }}">
+    <i class="bi bi-person-badge"></i>
+    <span>{{ __('menu.emploes') }}</span>
+  </a>
+</li>
+
 <li class="nav-item">
   <a class="nav-link collapsed" href="#">
-    <i class="bi bi-grid"></i>
-    <span>Hodimlar</span>
+    <i class="bi bi-wallet2"></i>
+    <span>{{ __('menu.cashier') }}</span>
   </a>
 </li>
-<li class="nav-item">
-  <a class="nav-link collapsed" href="#">
-    <i class="bi bi-grid"></i>
-    <span>Kassa</span>
-  </a>
-</li>
+
 <li class="nav-item">
   <a class="nav-link collapsed" data-bs-target="#davomad-nav" data-bs-toggle="collapse" href="#">
-    <i class="bi bi-menu-button-wide"></i><span>Davomad</span><i class="bi bi-chevron-down ms-auto"></i>
+    <i class="bi bi-calendar2-check"></i><span>{{ __('menu.attendance') }}</span><i class="bi bi-chevron-down ms-auto"></i>
   </a>
   <ul id="davomad-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
     <li>
       <a href="#">
-        <i class="bi bi-circle"></i><span>Hodimlar davomadi</span>
+        <i class="bi bi-dot"></i><span>{{ __('menu.staff_attendance') }}</span>
       </a>
     </li>
     <li>
       <a href="#">
-        <i class="bi bi-circle"></i><span>Bolalar davomadi</span>
+        <i class="bi bi-dot"></i><span>{{ __('menu.child_attendance') }}</span>
       </a>
     </li>
   </ul>
 </li>
+
 <li class="nav-item">
   <a class="nav-link collapsed" data-bs-target="#lead-nav" data-bs-toggle="collapse" href="#">
-    <i class="bi bi-menu-button-wide"></i><span>Lead</span><i class="bi bi-chevron-down ms-auto"></i>
+    <i class="bi bi-person-plus-fill"></i><span>{{ __('menu.lead') }}</span><i class="bi bi-chevron-down ms-auto"></i>
   </a>
   <ul id="lead-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
     <li>
       <a href="#">
-        <i class="bi bi-circle"></i><span>Hodimlar</span>
+        <i class="bi bi-dot"></i><span>{{ __('menu.staff_leads') }}</span>
       </a>
     </li>
     <li>
       <a href="#">
-        <i class="bi bi-circle"></i><span>Bolalar</span>
+        <i class="bi bi-dot"></i><span>{{ __('menu.child_leads') }}</span>
       </a>
     </li>
   </ul>
 </li>
+
 <li class="nav-item">
   <a class="nav-link collapsed" href="#">
-    <i class="bi bi-grid"></i>
-    <span>Moliya</span>
+    <i class="bi bi-bank"></i>
+    <span>{{ __('menu.finance') }}</span>
   </a>
 </li>
+
 <li class="nav-item">
   <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-    <i class="bi bi-menu-button-wide"></i><span>Statistika</span><i class="bi bi-chevron-down ms-auto"></i>
+    <i class="bi bi-graph-up-arrow"></i><span>{{ __('menu.statistics') }}</span><i class="bi bi-chevron-down ms-auto"></i>
   </a>
   <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
     <li>
       <a href="#">
-        <i class="bi bi-circle"></i><span>Chart 01</span>
+        <i class="bi bi-dot"></i><span>Chart 01</span>
       </a>
     </li>
     <li>
       <a href="#">
-        <i class="bi bi-circle"></i><span>Chart 02</span>
+        <i class="bi bi-dot"></i><span>Chart 02</span>
       </a>
     </li>
   </ul>

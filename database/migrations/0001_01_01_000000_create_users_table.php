@@ -12,6 +12,7 @@ return new class extends Migration{
             $table->string('phone')->unique();
             $table->string('phone_two')->nullable();
             $table->string('address')->nullable();
+            $table->integer('amount')->nullable();
             $table->date('birthday')->nullable();
             $table->string('passport_number',20)->nullable(); 
             $table->enum('type', ['drektor', 'admin', 'katta_tarbiyachi','kichik_tarbiyachi','oshpaz','teacher','farrosh','hodim'])->default('hodim');
