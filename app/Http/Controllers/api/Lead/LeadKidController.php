@@ -5,7 +5,6 @@ namespace App\Http\Controllers\api\Lead;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Lead\StoreLeadKidRequest;
 use App\Models\LeadKid;
-use Illuminate\Http\Request;
 
 class LeadKidController extends Controller{
 

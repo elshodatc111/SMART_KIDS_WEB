@@ -2,48 +2,47 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
-{
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+class User extends Authenticatable{
+
     use HasFactory, Notifiable, HasApiTokens;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'name',
-        'email',
+        'phone',
+        'phone_two',
+        'address',
+        'birthday',
+        'passport_number',
+        'type',
+        'type_about',
+        'status',
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
+    protected function casts(): array{
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'birthday' => 'date', // String emas, Date obyekti sifatida ishlash uchun
+            'password' => 'hashed', // Parolni avtomat hash qilish (Laravel 10+)
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
+    }
+
+    public function isAdmin(): bool{
+        return $this->type === 'admin';
+    }
+
+    public function isDirector(): bool{
+        return $this->type === 'drektor';
     }
 }
