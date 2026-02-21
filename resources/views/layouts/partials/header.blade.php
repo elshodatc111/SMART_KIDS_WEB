@@ -9,7 +9,7 @@
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                 <li class="dropdown-header">
                     {{ __('header.lead_title') }}
-                    <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">{{ __('header.lead_all') }}</span></a>
+                    <a href="{{ route('emploes_lead') }}"><span class="badge rounded-pill bg-primary p-2 ms-2">{{ __('header.lead_all') }}</span></a>
                 </li>
                 <li><hr class="dropdown-divider"></li>
                 <!-- Yangi hodim -->

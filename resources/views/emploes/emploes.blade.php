@@ -39,7 +39,7 @@
                       <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
                         <td><a href="#">{{ $user->name }}</a></td>
-                        <td>{{ $user->phone }}</td>
+                        <td>{{ preg_replace('/(\+\d{3})(\d{2})(\d{3})(\d{4})/', '$1 $2 $3 $4', $user->phone) }}</td>
                         <td>{{ $user->type }}</td>
                         <td>{{ $user->status }}</td>
                         <td class="text-center">{{ $user->created_at }}</td> 
@@ -57,38 +57,6 @@
         </div>
       </div>
     </section>
-
-@if ($errors->any())
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div id="errorToast" class="toast show align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body">
-        @foreach ($errors->all() as $error)
-            <div><i class="bi bi-exclamation-octagon me-2"></i> {{ $error }}</div>
-        @endforeach
-      </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-  </div>
-</div>
-@endif
-
-@if (session('success'))
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div id="successToast" class="toast show align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body">
-        <i class="bi bi-check-circle me-2"></i> {{ session('success') }}
-      </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-  </div>
-</div>
-<script>
-  setTimeout(function() {var toastElement = document.getElementById('successToast');if (toastElement) {var toast = new bootstrap.Toast(toastElement);toast.hide();}}, 5000);
-  setTimeout(function() {var errorToastEl = document.getElementById('errorToast');if (errorToastEl) {var toast = new bootstrap.Toast(errorToastEl);toast.hide();}}, 5000);
-</script>
-@endif
 
 <div class="modal" id="create_emploes" tabindex="-1">
   <div class="modal-dialog">

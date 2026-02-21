@@ -16,18 +16,14 @@ class LeadEmployee extends Model{
         'education_level',
         'education_detail',
         'previous_company',
-        'position_applied',
-        'years_of_experience',
         'career_objective',
         'expected_salary',
-        'gender',
+        'lovozim',
         'status',
-        'admin_note',
         'vacance_about',
-        'vacance_about_other',
-        'vacance_looking_for',
-        'vacance_looking_for_other',
+        'admin_note',
     ];
+            
     protected $casts = [
         'date_of_birth' => 'date',
     ];
