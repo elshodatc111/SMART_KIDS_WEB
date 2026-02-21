@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\Lead\LeadEmploesController;
+use App\Http\Controllers\api\Lead\LeadKidController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\EmploesController;
@@ -24,6 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/emploes/create', [EmploesController::class, 'store'])->name('emploes_create');
     Route::get('/emploes/leads', [LeadEmploesController::class, 'allLead'])->name('emploes_lead');
     Route::post('/lead/emploes/create', [LeadEmploesController::class, 'createLeadWebEmploes'])->name('emploes_lead_create');
+    Route::get('/child/leads', [LeadKidController::class, 'allLead'])->name('child_lead');
+    Route::post('/lead/child/create', [LeadKidController::class, 'createWeb'])->name('child_lead_create');
 
     
 });

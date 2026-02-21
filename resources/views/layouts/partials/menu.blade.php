@@ -57,12 +57,12 @@
   </a>
   <ul id="lead-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
     <li>
-      <a href="#">
+      <a href="{{ route('emploes_lead') }}">
         <i class="bi bi-dot"></i><span>{{ __('menu.staff_leads') }}</span>
       </a>
     </li>
     <li>
-      <a href="#">
+      <a href="{{ route('child_lead') }}">
         <i class="bi bi-dot"></i><span>{{ __('menu.child_leads') }}</span>
       </a>
     </li>

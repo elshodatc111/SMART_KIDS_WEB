@@ -9,16 +9,13 @@ class LeadKid extends Model{
     use HasFactory;
     protected $fillable = [
         'child_full_name',
-        'child_dob',
         'certificate_serial',
+        'tkun',
         'gender',
         'parent_full_name',
         'phone1',
         'phone2',
         'address',
-        'medical_conditions',
-        'target_group',
-        'expected_arrival_date',
         'status',
         'source',
         'admin_note',
