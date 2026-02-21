@@ -1,5 +1,5 @@
 <li class="nav-item">
-  <a class="nav-link" href="#">
+  <a class="nav-link" href="{{ route('home') }}">
     <i class="bi bi-house-heart"></i>
     <span>{{ __('menu.dashboard') }}</span>
   </a>

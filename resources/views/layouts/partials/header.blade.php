@@ -2,82 +2,18 @@
     <ul class="d-flex align-items-center list-unstyled mb-0">
         <!-- Lead -->        
         <li class="nav-item dropdown">
-            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <a class="nav-link nav-icon" href="{{ route('emploes_lead') }}">
                 <i class="bi bi-bell"></i>
-                <span class="badge bg-primary badge-number">4</span>
+                <span class="badge bg-primary badge-number">@if($header_leads>0) {{ $header_leads }} @endif</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                <li class="dropdown-header">
-                    {{ __('header.lead_title') }}
-                    <a href="{{ route('emploes_lead') }}"><span class="badge rounded-pill bg-primary p-2 ms-2">{{ __('header.lead_all') }}</span></a>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-                <!-- Yangi hodim -->
-                <li class="notification-item">
-                    <i class="bi bi-exclamation-circle text-warning"></i>
-                    <div>
-                        <h4>{{ __('header.lead_emploes') }}</h4>
-                        <p>Elshod Musurmonov (Tarbiyachi)</p>
-                        <p>2026-01-15 15:41:27</p>
-                    </div>
-                </li>
-                <!-- Yangi bola -->
-                <li class="notification-item">
-                    <i class="bi bi-exclamation-circle text-info"></i>
-                    <div>
-                        <h4>{{ __('header.lead_child') }}</h4>
-                        <p>Elshod Musurmonov</p>
-                        <p>2026-01-15 15:41:27</p>
-                    </div>
-                </li>
-                <!-- Leadlar mavjud emas -->
-                <li class="notification-item">
-                    <i class="bi bi-empty text-info"></i>
-                    <div>
-                        <h6>{{ __('header.lead_no') }}</h6>
-                    </div>
-                </li>
-            </ul>
         </li>
 
         <!-- Tyg'ilgan kunlar -->        
         <li class="nav-item dropdown">
-            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <a class="nav-link nav-icon" href="#">
                 <i class="bi bi-cake2"></i>
-                <span class="badge bg-primary badge-number">4</span>
+                <span class="badge bg-primary badge-number">@if($header_tkun>0) {{ $header_tkun }} @endif</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                <li class="dropdown-header">
-                    {{ __('header.birthday_title') }}
-                    <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">{{ __('header.birthday_all') }}</span></a>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-                <!-- Yangi hodim -->
-                <li class="notification-item">
-                    <i class="bi bi-exclamation-circle text-warning"></i>
-                    <div>
-                        <h4>{{ __('header.birthday_emploes') }}</h4>
-                        <p>Elshod Musurmonov (Tarbiyachi)</p>
-                        <p>Bugun tug'ilgan kuni</p>
-                    </div>
-                </li>
-                <!-- Yangi bola -->
-                <li class="notification-item">
-                    <i class="bi bi-exclamation-circle text-info"></i>
-                    <div>
-                        <h4>{{ __('header.birthday_child') }}</h4>
-                        <p>Elshod Musurmonov</p>
-                        <p>4 kun qoldi</p>
-                    </div>
-                </li>
-                <!-- Tug'ilgan kunlar mavjud emas -->
-                <li class="notification-item">
-                    <i class="bi bi-empty text-info"></i>
-                    <div>
-                        <h6>{{ __('header.birthday_no') }}</h6>
-                    </div>
-                </li>
-            </ul>
         </li>
         
         <!-- Til yangilash -->
