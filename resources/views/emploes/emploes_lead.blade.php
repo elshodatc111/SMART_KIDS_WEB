@@ -58,13 +58,13 @@
                           <td class="text-center">{{ $lead['lovozim'] }}</td>
                           <td class="text-center">
                             @if($lead['status']=='new')
-                              {{ __('lead_emploes_page.new') }}
+                              <span class="badge border border-primary border-1 text-primary">{{ __('lead_emploes_page.new') }}</span>
                             @elseif($lead['status']=='pending')
-                              {{ __('lead_emploes_page.pending') }}
+                              <span class="badge border border-warning border-1 text-warning">{{ __('lead_emploes_page.pending') }}</span>
                             @elseif($lead['status']=='success')
-                              {{ __('lead_emploes_page.success') }}
+                              <span class="badge border border-success border-1 text-success">{{ __('lead_emploes_page.success') }}</span>
                             @else
-                              {{ __('lead_emploes_page.cancel') }}
+                              <span class="badge border border-danger border-1 text-danger">{{ __('lead_emploes_page.cancel') }}</span>
                             @endif
                           </td>
                           <td class="text-center">{{ $lead['created_at'] }}</td>

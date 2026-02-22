@@ -42,12 +42,22 @@
                       <td><a href="#">{{ $lead->child_full_name }}</a></td>
                       <td>{{ $lead->address }}</td>
                       <td class="text-center">{{ $lead->tkun }}</td>
-                      <td class="text-center">{{ $lead->status }}</td>
+                      <td class="text-center">
+                        @if($lead['status']=='new')
+                          <span class="badge border border-primary border-1 text-primary">{{ __('lead_emploes_page.new') }}</span>
+                        @elseif($lead['status']=='pending')
+                          <span class="badge border border-warning border-1 text-warning">{{ __('lead_emploes_page.pending') }}</span>
+                        @elseif($lead['status']=='success')
+                          <span class="badge border border-success border-1 text-success">{{ __('lead_emploes_page.success') }}</span>
+                        @else
+                          <span class="badge border border-danger border-1 text-danger">{{ __('lead_emploes_page.cancel') }}</span>
+                        @endif
+                      </td>
                       <td class="text-center">{{ $lead->created_at }}</td>
                     </tr>
                   @empty
                     <tr>
-                      <td colspan="6" class="text-center">Arizalar mavjud emas.</td>
+                      <td colspan="6" class="text-center">{{ __('lead_emploes_page.not_found')}}</td>
                     </tr>
                   @endforelse
                 </tbody>
@@ -76,7 +86,7 @@
             <div class="row">
               <div class="col-lg-8">
                 <div class="mb-1">
-                  <label for="certificate_serial" class="form-label">Guvohnoma raqami</label>
+                  <label for="certificate_serial" class="form-label">{{ __('lead_emploes_page.guvohnoma_raqami') }}</label>
                   <div class="row">
                     <div class="col-5">
                       <input type="text" class="form-control guvoxnoma_serya" id="certificate_serial_01" name="certificate_serial_01" value="{{ old('certificate_serial_01') }}" required>
@@ -89,17 +99,17 @@
               </div>
               <div class="col-lg-4">
                 <div class="mb-1">
-                  <label for="gender" class="form-label">Jinsi</label>
+                  <label for="gender" class="form-label">{{ __('lead_emploes_page.jinsi') }}</label>
                   <select name="gender" id="gender" class="form-select" required>
-                    <option value="">Tanlang</option>
-                    <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Erkak</option>
-                    <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Ajol</option>
+                    <option value="">{{ __('lead_emploes_page.tanlang') }}</option>
+                    <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>{{ __('lead_emploes_page.erkak') }}</option>
+                    <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>{{ __('lead_emploes_page.ayol') }}</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <label for="parent_full_name" class="form-label">Yaqin qarindoshi</label>
+              <label for="parent_full_name" class="form-label">{{ __('lead_emploes_page.yaqin_qarindosh') }}</label>
               <input type="text" class="form-control" id="parent_full_name" name="parent_full_name" value="{{ old('parent_full_name') }}" required>
             </div>
             <div class="row">
@@ -129,19 +139,19 @@
               </div>
               <div class="col-lg-6">
                 <div class="mb-1">
-                  <label for="source" class="form-label">Biz haqimizda</label>
+                  <label for="source" class="form-label">{{ __('lead_emploes_page.biz_haqimizda') }}</label>
                   <select name="source" id="source" class="form-select" required>
-                    <option value="">Tanlang</option>
+                    <option value="">{{ __('lead_emploes_page.tanlang') }}</option>
                     <option value="instagram" {{ old('source') == 'instagram' ? 'selected' : '' }}>Instagram</option>
                     <option value="telegram" {{ old('source') == 'telegram' ? 'selected' : '' }}>Telegram</option>
                     <option value="friend" {{ old('source') == 'friend' ? 'selected' : '' }}>Tanishlar</option>
-                    <option value="other" {{ old('other') == 'friend' ? 'selected' : '' }}>Boshqa</option>
+                    <option value="other" {{ old('other') == 'friend' ? 'selected' : '' }}>{{ __('lead_emploes_page.boshqa') }}</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="mb-1">
-              <label for="lovozim" class="form-label">Qo'shimcha izoh</label>
+              <label for="lovozim" class="form-label">{{ __('lead_emploes_page.qoshimcha_izoh') }}</label>
               <input type="text" class="form-control" id="lovozim" name="lovozim" value="{{ old('lovozim') }}" required>
             </div>
           </div>

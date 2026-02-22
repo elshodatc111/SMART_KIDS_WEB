@@ -34,6 +34,14 @@ return [
     'not_found' => "Arizalar mavjud emas.",
     'error_one' => "Asosiy telefon raqami +998 90 123 4567 formatida boʻlishi shart.",
     'error_phone' => "Qoʻshimcha telefon raqami notoʻgʻri formatda.",
-    'error_maydon' => ":attribute maydoni toʻldirilishi shart."
-
+    'error_maydon' => ":attribute maydoni toʻldirilishi shart.",
+    'guvohnoma_raqami' => "Guvohnoma raqami",
+    'jinsi' => "Jinsi",
+    'erkak' => "Erkak",
+    "ayol" => "Ayol",
+    'yaqin_qarindosh' => "Yaqin qarindoshi",
+    'biz_haqimizda' => "Biz haqimizda",
+    'tanlang' => "Tanlang...",
+    'qoshimcha_izoh' => "Qo'shimcha izoh",
+    'boshqa' => 'Boshqa'
 ];
