@@ -40,8 +40,34 @@
                         <td class="text-center">{{ $loop->iteration }}</td>
                         <td><a href="#">{{ $user->name }}</a></td>
                         <td>{{ preg_replace('/(\+\d{3})(\d{2})(\d{3})(\d{4})/', '$1 $2 $3 $4', $user->phone) }}</td>
-                        <td>{{ $user->type }}</td>
-                        <td>{{ $user->status }}</td>
+                        <td class="text-center">
+                          @if($user->type=='drektor')
+                            {{ __('emploes_page.lavozim_drektor') }}
+                          @elseif($user->type=='admin')
+                            {{ __('emploes_page.lavozim_admin') }}
+                          @elseif($user->type=='katta_tarbiyachi')
+                            {{ __('emploes_page.katta_tarbiyachi') }}
+                          @elseif($user->type=='kichik_tarbiyachi')
+                            {{ __('emploes_page.lavozim_yordamch_tarbiyachi') }}
+                          @elseif($user->type=='teacher')
+                            {{ __('emploes_page.lavozim_oqituvchi') }}
+                          @elseif($user->type=='oshpaz')
+                            {{ __('emploes_page.lavozim_oshpaz') }}
+                          @elseif($user->type=='farrosh')
+                            {{ __('emploes_page.lavozim_farrosh') }}
+                          @else
+                            {{ __('emploes_page.lavozim_hodim') }}
+                          @endif
+                        </td>
+                        <td class="text-center">
+                          @if($user->status == 'active')
+                            <span class="badge border border-success border-1 text-success">{{ __('emploes_page.status_active') }}</span>
+                          @elseif($user->status == 'inactive')
+                            <span class="badge border border-warning border-1 text-warning">{{ __('emploes_page.status_noactive') }}</span>
+                          @else
+                            <span class="badge border border-danger border-1 text-danger">{{ __('emploes_page.status_delete') }}</span>
+                          @endif
+                        </td>
                         <td class="text-center">{{ $user->created_at }}</td> 
                       </tr>
                     @empty
@@ -104,15 +130,15 @@
             <div class="col-lg-6"> <!-- 'drektor','admin','katta_tarbiyachi','kichik_tarbiyachi','oshpaz','teacher','farrosh','hodim' -->
               <label for="type" class="form-label">{{ __('emploes_page.type') }}</label>
               <select class="form-select" id="type" name="type" required>   
-                <option value="">Lavozim tanlang</option>
-                <option value="drektor">Direktor</option>
-                <option value="admin">Admin</option>  
-                <option value="katta_tarbiyachi">Tarbiyachi</option>
-                <option value="kichik_tarbiyachi">Yordamchi tarbiyachi</option>
-                <option value="oshpaz">Oshpaz</option>
-                <option value="teacher">O'qituvchi</option>
-                <option value="farrosh">Farrosh</option>
-                <option value="hodim">Hodim</option>
+                <option value="">{{ __('emploes_page.lavozim_tanlang') }}</option>
+                <option value="drektor">{{ __('emploes_page.lavozim_drektor') }}</option>
+                <option value="admin">{{ __('emploes_page.lavozim_admin') }}</option>  
+                <option value="katta_tarbiyachi">{{ __('emploes_page.lavozim_tarbiyachi') }}</option>
+                <option value="kichik_tarbiyachi">{{ __('emploes_page.lavozim_yordamch_tarbiyachi') }}</option>
+                <option value="oshpaz">{{ __('emploes_page.lavozim_oshpaz') }}</option>
+                <option value="teacher">{{ __('emploes_page.lavozim_oqituvchi') }}</option> 
+                <option value="farrosh">{{ __('emploes_page.lavozim_farrosh') }}</option>
+                <option value="hodim">{{ __('emploes_page.lavozim_hodim') }}</option>
               </select>
             </div>
           </div>        
