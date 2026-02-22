@@ -1,0 +1,23 @@
+<?php
+return [
+    'current_password_current_password' => 'Amaldagi parol noto‘g‘ri.',
+    'password_required' => 'Yangi parolni kiriting.',
+    'password_confirmed' => 'Yangi parol tasdig‘i bilan mos kelmadi.',
+    'password_min' => 'Parol kamida 8 ta belgidan iborat bo‘lishi kerak.',
+    'password_mixed' => 'Parolda kamida bitta bosh va bitta kichik harf bo‘lishi shart.',
+    'password_numbers' => 'Parolda kamida bitta raqam bo‘lishi shart.',
+    'password_symbols' => 'Parolda kamida bitta maxsus belgi (!, @, #, $, % kabi) bo‘lishi shart.',
+    'profile' => 'Profil',
+    'shaxsiy_mal' => 'Shaxsiy ma’lumotlar',
+    'fio' => 'FIO',
+    'phone1' => 'Telefon raqami',
+    'phone2' => "Qo‘shimcha telefon raqami",
+    'address' => "Yashash manzili",
+    'tkun' => "Tug‘ilgan sana",
+    'passport' => "Pasport raqami",
+    'lavozim' => "Lavozimi",
+    'parol_yangilash' => "Parolni yangilash", 
+    'joriy_parol' => "Joriy parol",
+    'yangi_parol' => "Yangi parol",
+    'yangi_parol_tasdiq' => "Yangi parolni tasdiqlang",
+];

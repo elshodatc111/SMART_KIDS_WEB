@@ -15,7 +15,7 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Xush kelibsiz!</h5>
+              <h5 class="card-title">Hush kelibsiz</h5>
               <p>Siz tizimga muvaffaqiyatli kirdingiz. Bu yerda sizning asosiy statistikalaringiz ko'rinadi.</p>
             </div>
           </div>
