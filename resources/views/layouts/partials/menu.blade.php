@@ -34,12 +34,12 @@
 </li>
 
 <li class="nav-item">
-  <a class="nav-link collapsed" data-bs-target="#davomad-nav" data-bs-toggle="collapse" href="#">
+  <a class="nav-link {{ request()->routeIs(['emploes_davomad']) ? '' : 'collapsed' }}" data-bs-target="#davomad-nav" data-bs-toggle="collapse" href="#">
     <i class="bi bi-calendar2-check"></i><span>{{ __('menu.attendance') }}</span><i class="bi bi-chevron-down ms-auto"></i>
   </a>
-  <ul id="davomad-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+  <ul id="davomad-nav" class="nav-content collapse {{ request()->routeIs(['emploes_davomad']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
     <li>
-      <a href="#">
+      <a href="{{ route('emploes_davomad') }}" class="nav-link {{ request()->routeIs(['emploes_davomad']) ? '' : 'collapsed' }}">
         <i class="bi bi-dot"></i><span>{{ __('menu.staff_attendance') }}</span>
       </a>
     </li>

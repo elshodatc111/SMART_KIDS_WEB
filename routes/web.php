@@ -4,6 +4,7 @@ use App\Http\Controllers\api\Lead\LeadEmploesController;
 use App\Http\Controllers\api\Lead\LeadKidController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthWebController;
+use App\Http\Controllers\Emploes\EmploesDavomadController;
 use App\Http\Controllers\EmploesController;
 use App\Http\Controllers\KassaController;
 use App\Http\Controllers\ProfileController;
@@ -23,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthWebController::class, 'logout'])->name('logout');
 
     Route::get('/emploes', [EmploesController::class, 'index'])->name('emploes');
+    Route::get('/emploes/davomad', [EmploesDavomadController::class, 'showDavomad'])->name('emploes_davomad');
+    Route::post('/davomad/saqlash', [EmploesDavomadController::class, 'store'])->name('davomad_store');
     Route::post('/emploes/create', [EmploesController::class, 'store'])->name('emploes_create');
     Route::get('/emploes/leads', [LeadEmploesController::class, 'allLead'])->name('emploes_lead');
     Route::post('/lead/emploes/create', [LeadEmploesController::class, 'createLeadWebEmploes'])->name('emploes_lead_create');

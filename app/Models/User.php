@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -45,5 +46,13 @@ class User extends Authenticatable{
 
     public function isDirector(): bool{
         return $this->type === 'drektor';
+    }
+
+    public function attendances(): HasMany{
+        return $this->hasMany(HodimDavomad::class, 'user_id');
+    }
+    
+    public function todayAttendance(){
+        return $this->hasOne(HodimDavomad::class, 'user_id')->where('attendance_date', now()->format('Y-m-d'));
     }
 }
