@@ -27,7 +27,7 @@
 </li>
 
 <li class="nav-item">
-  <a class="nav-link collapsed" href="#">
+  <a class="nav-link {{ request()->routeIs(['kassa']) ? '' : 'collapsed' }}" href="{{ route('kassa') }}">
     <i class="bi bi-wallet2"></i>
     <span>{{ __('menu.cashier') }}</span>
   </a>

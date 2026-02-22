@@ -5,6 +5,7 @@ use App\Http\Controllers\api\Lead\LeadKidController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\EmploesController;
+use App\Http\Controllers\KassaController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('lang/{locale}', function ($locale) {
@@ -30,6 +31,8 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::post('/profile/password/update', [ProfileController::class, 'update'])->name('profile_password_update');
+
+    Route::get('/kassa', [KassaController::class, 'kassa'])->name('kassa');
 
     
 });
