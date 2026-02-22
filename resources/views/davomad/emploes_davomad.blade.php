@@ -202,10 +202,9 @@
         position: sticky; left: 0; background: white; z-index: 2; border-right: 2px solid #dee2e6 !important; 
     }
     .table-responsive table th:first-child { background: #f6f9ff; z-index: 3; }
-    
-    /* Radio tugmalar vizual yaxshilanishi uchun */
     .btn-group .btn {
         min-width: 80px;
     }
 </style>
+
 @endsection

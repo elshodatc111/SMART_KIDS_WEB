@@ -9,33 +9,25 @@ use App\Http\Controllers\EmploesController;
 use App\Http\Controllers\KassaController;
 use App\Http\Controllers\ProfileController;
 
-Route::get('lang/{locale}', function ($locale) {
-    if (in_array($locale, ['uz', 'ru'])) {
-        session()->put('locale', $locale);
-    }
-    return redirect()->back();
-})->name('changeLang');
+Route::get('lang/{locale}', function ($locale) {if (in_array($locale, ['uz', 'ru'])) {session()->put('locale', $locale);}return redirect()->back();})->name('changeLang');
 
-Route::get('/login', [AuthWebController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthWebController::class, 'login']);
+Route::get('/login', [AuthWebController::class, 'showLogin'])->name('login');  // Login page
+Route::post('/login', [AuthWebController::class, 'login']); // Login Post
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () { return view('index'); })->name('home');
-    Route::post('/logout', [AuthWebController::class, 'logout'])->name('logout');
-
-    Route::get('/emploes', [EmploesController::class, 'index'])->name('emploes');
-    Route::get('/emploes/davomad', [EmploesDavomadController::class, 'showDavomad'])->name('emploes_davomad');
-    Route::post('/davomad/saqlash', [EmploesDavomadController::class, 'store'])->name('davomad_store');
-    Route::post('/emploes/create', [EmploesController::class, 'store'])->name('emploes_create');
-    Route::get('/emploes/leads', [LeadEmploesController::class, 'allLead'])->name('emploes_lead');
-    Route::post('/lead/emploes/create', [LeadEmploesController::class, 'createLeadWebEmploes'])->name('emploes_lead_create');
-    Route::get('/child/leads', [LeadKidController::class, 'allLead'])->name('child_lead');
-    Route::post('/lead/child/create', [LeadKidController::class, 'createWeb'])->name('child_lead_create');
-    
-    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
-    Route::post('/profile/password/update', [ProfileController::class, 'update'])->name('profile_password_update');
-
-    Route::get('/kassa', [KassaController::class, 'kassa'])->name('kassa');
+    Route::get('/', function () { return view('index'); })->name('home'); // Bosh sahifa
+    Route::post('/logout', [AuthWebController::class, 'logout'])->name('logout'); // Logindan chiqish
+    Route::get('/emploes', [EmploesController::class, 'index'])->name('emploes');  // Barcha hodimlar
+    Route::get('/emploes/davomad', [EmploesDavomadController::class, 'showDavomad'])->name('emploes_davomad'); // Xodimlar davomadi
+    Route::post('/davomad/saqlash', [EmploesDavomadController::class, 'store'])->name('davomad_store');  // Hodimlar davomadini saqlash
+    Route::post('/emploes/create', [EmploesController::class, 'store'])->name('emploes_create'); // Yangi hodim qo'shish
+    Route::get('/emploes/leads', [LeadEmploesController::class, 'allLead'])->name('emploes_lead'); // Lead barcha Hodim leadlari
+    Route::post('/lead/emploes/create', [LeadEmploesController::class, 'createLeadWebEmploes'])->name('emploes_lead_create'); // Yangi xodim lead qo'shish
+    Route::get('/child/leads', [LeadKidController::class, 'allLead'])->name('child_lead'); // Barcha Child Lead
+    Route::post('/lead/child/create', [LeadKidController::class, 'createWeb'])->name('child_lead_create'); // Yangi child create lead
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');  // Profile Page
+    Route::post('/profile/password/update', [ProfileController::class, 'update'])->name('profile_password_update'); // Passport Update Post
+    Route::get('/kassa', [KassaController::class, 'kassa'])->name('kassa'); // Kassa Page
 
     
 });
