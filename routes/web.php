@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/kids', [KidController::class, 'kids'])->name('kids'); // Barcha bolalar
     Route::post('/kids/create', [KidController::class, 'store'])->name('kids_create'); // Yangi bola qo'shish
     Route::post('/kids/update', [KidController::class, 'kidUpdate'])->name('kids_update'); // Yangi bola qo'shish
+    Route::post('/kids/note/create', [KidController::class, 'noteCreate'])->name('kids_note_create'); // Yangi izoh qoldirish
+    Route::post('/kids/payment/create', [KidController::class, 'createPayment'])->name('kids_payment_create'); // To'lov qilish
     Route::get('/kid/{id}', [KidController::class, 'show'])->name('kid_show'); // Bola haqida
 
     

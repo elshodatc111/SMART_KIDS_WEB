@@ -33,10 +33,10 @@ class UpdateKidRequest extends FormRequest{
 
     public function messages(): array{
         return [
-            'child_full_name.required' => 'F.I.O. maydonini toʻldirish shart.',
-            'tkun.required'            => 'Tugʻilgan sana kiritilishi shart.',
-            'gender.required'          => 'Jinsni tanlang.',
-            'phone1.required'          => 'Telefon raqami shart.',
+            'child_full_name.required' => __('bolalar_show.fio_kiritish_shart'),
+            'tkun.required'            => __('bolalar_show.tkun_kiritish_shart'),
+            'gender.required'          => __('bolalar_show.jinsini_tanlang'),
+            'phone1.required'          => __('bolalar_show.phone_number_shart'),
         ];
     }
 }
