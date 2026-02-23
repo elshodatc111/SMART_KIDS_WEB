@@ -30,7 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/password/update', [ProfileController::class, 'update'])->name('profile_password_update'); // Passport Update Post
     Route::get('/kassa', [KassaController::class, 'kassa'])->name('kassa'); // Kassa Page
     Route::get('/kids', [KidController::class, 'kids'])->name('kids'); // Barcha bolalar
-    Route::post('/kids/create', [KidController::class, 'store'])->name('kids_create'); // Barcha bolalar
+    Route::post('/kids/create', [KidController::class, 'store'])->name('kids_create'); // Yangi bola qo'shish
+    Route::post('/kids/update', [KidController::class, 'kidUpdate'])->name('kids_update'); // Yangi bola qo'shish
+    Route::get('/kid/{id}', [KidController::class, 'show'])->name('kid_show'); // Bola haqida
 
     
 });

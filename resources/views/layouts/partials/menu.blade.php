@@ -6,7 +6,7 @@
 </li>
 
 <li class="nav-item">
-  <a class="nav-link  {{ request()->routeIs(['kids']) ? '' : 'collapsed' }}" href="{{ route('kids') }}">
+  <a class="nav-link  {{ request()->routeIs(['kids','kid_show']) ? '' : 'collapsed' }}" href="{{ route('kids') }}">
     <i class="bi bi-backpack4"></i>
     <span>{{ __('menu.child') }}</span>
   </a>

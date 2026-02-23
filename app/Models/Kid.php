@@ -18,6 +18,7 @@ class Kid extends Model{
         'address',
         'amount',
         'status',
+        'payment_month',
         'admin_note',
         'admin_id',
     ];

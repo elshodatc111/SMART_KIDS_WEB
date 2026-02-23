@@ -19,6 +19,7 @@ return new class extends Migration{
             $table->text('address')->nullable();
             $table->decimal('amount',15,0)->default(0);
             $table->enum('status', ['true', 'false','delete'])->default('false');
+            $table->string('payment_month')->nullable();
             $table->text('admin_note')->nullable();
             $table->foreignId('admin_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();

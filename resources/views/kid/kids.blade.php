@@ -48,11 +48,11 @@
                 @forelse ($kids as $kid)
                   <tr>
                     <td class="text-center">{{ ($kids->currentPage() - 1) * $kids->perPage() + $loop->iteration }}</td>
-                    <td><a href="">{{ $kid->child_full_name }}</a></td>
+                    <td><a href="{{ route('kid_show',$kid->id) }}">{{ $kid->child_full_name }}</a></td>
                     <td class="text-center">{{ $kid->tkun->format('d.m.Y') }}</td>
                     <td class="text-center">{{ $kid->certificate_serial }}</td>
-                    <td class="text-center">{{ $kid->amount }}</td>
-                    <td class="text-center">
+                    <td class="text-center">@if($kid->amount>=0){{ number_format($kid->amount, 0, '.', ' ') }}@else <span class="text-danger">{{ number_format($kid->amount, 0, '.', ' ') }}</span> @endif</td>
+                    <td class="text-center"> 
                       @if($kid->status == 'true')
                         <span class="badge bg-success">{{ __('bolalar.active') }}</span>
                       @else
