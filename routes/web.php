@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\Emploes\EmploesDavomadController;
 use App\Http\Controllers\EmploesController;
 use App\Http\Controllers\KassaController;
+use App\Http\Controllers\KidController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('lang/{locale}', function ($locale) {if (in_array($locale, ['uz', 'ru'])) {session()->put('locale', $locale);}return redirect()->back();})->name('changeLang');
@@ -28,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');  // Profile Page
     Route::post('/profile/password/update', [ProfileController::class, 'update'])->name('profile_password_update'); // Passport Update Post
     Route::get('/kassa', [KassaController::class, 'kassa'])->name('kassa'); // Kassa Page
+    Route::get('/kids', [KidController::class, 'kids'])->name('kids'); // Barcha bolalar
+    Route::post('/kids/create', [KidController::class, 'store'])->name('kids_create'); // Barcha bolalar
 
     
 });

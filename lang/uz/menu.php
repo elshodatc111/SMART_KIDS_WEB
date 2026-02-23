@@ -1,7 +1,7 @@
 <?php
 return [
     'dashboard' => 'Bosh sahifa',
-    'child' => 'Bolalar',
+    'child' => 'Tarbiyalanuvchilar',
     'groups'=> 'Guruhlar',
     'emploes' => 'Xodimlar',
     'cashier' => 'Kassa',

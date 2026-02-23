@@ -55,4 +55,9 @@ class User extends Authenticatable{
     public function todayAttendance(){
         return $this->hasOne(HodimDavomad::class, 'user_id')->where('attendance_date', now()->format('Y-m-d'));
     }
+
+    public function kids(): HasMany{
+        return $this->hasMany(Kid::class, 'admin_id');
+    }
+    
 }
