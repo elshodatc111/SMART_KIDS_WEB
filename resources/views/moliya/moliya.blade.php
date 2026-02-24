@@ -77,51 +77,53 @@
             <div class="card-body">
               <h5 class="card-title">Balans tarixi</h5>
               <p>Oxirgi 45 kunlik hisobot</p>
-              <div class="table-responsive">
-                <table class="table table-bordered" style="font-size: 14px">
-                  <thead>
-                    <tr class="text-center bg-light">
-                      <th scope="col">#</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Summa</th>
-                      <th scope="col">To'lov turi</th>
-                      <th scope="col">Izoh</th>
-                      <th scope="col">To'lov vaqti</th>
-                      <th scope="col">Meneger</th>
-                      <th scope="col">Tasdiqlangan vaqt</th>
-                      <th scope="col">Tasdiqladi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @forelse ($moliyaHistory as $item)
-                      <tr class="text-center">
-                        <td>{{ $loop->iteration }}</td>
-                        <td>
-                          {{ $item->type }}
-                        </td>
-                        <td>{{ number_format($item->amount, 0, '.', ' ') }}</td>
-                        <td>
-                          @if($item->payment_method=='cash')
-                            Naqd
-                          @elseif($item->payment_method=='card')
-                            Plastik
-                          @else
-                            Bank
-                          @endif
-                        </td>
-                        <td>{{ $item->description }}</td>
-                        <td>{{ $item->created_at }}</td>
-                        <td>{{ $item->meneger ? $item->meneger->name : 'Noma\'lum' }}</td>
-                        <td>{{ $item->updated_at }}</td>
-                        <td>{{ $item->admin ? $item->admin->name : 'Noma\'lum' }}</td>
+                <div class="notes-wrapper" style="max-height: 500px; overflow-y: auto; overflow-x: hidden;">
+                <div class="table-responsive">
+                  <table class="table table-bordered" style="font-size: 14px">
+                    <thead>
+                      <tr class="text-center bg-light">
+                        <th scope="col">#</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Summa</th>
+                        <th scope="col">To'lov turi</th>
+                        <th scope="col">Izoh</th>
+                        <th scope="col">To'lov vaqti</th>
+                        <th scope="col">Meneger</th>
+                        <th scope="col">Tasdiqlangan vaqt</th>
+                        <th scope="col">Tasdiqladi</th>
                       </tr>
-                    @empty
-                      <tr>
-                        <td colspan="9" class="text-center">Ma'lumot yo'q</td>
-                      </tr>
-                    @endforelse
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      @forelse ($moliyaHistory as $item)
+                        <tr class="text-center">
+                          <td>{{ $loop->iteration }}</td>
+                          <td>
+                            {{ $item->type }}
+                          </td>
+                          <td>{{ number_format($item->amount, 0, '.', ' ') }}</td>
+                          <td>
+                            @if($item->payment_method=='cash')
+                              Naqd
+                            @elseif($item->payment_method=='card')
+                              Plastik
+                            @else
+                              Bank
+                            @endif
+                          </td>
+                          <td>{{ $item->description }}</td>
+                          <td>{{ $item->created_at }}</td>
+                          <td>{{ $item->meneger ? $item->meneger->name : 'Noma\'lum' }}</td>
+                          <td>{{ $item->updated_at }}</td>
+                          <td>{{ $item->admin ? $item->admin->name : 'Noma\'lum' }}</td>
+                        </tr>
+                      @empty
+                        <tr>
+                          <td colspan="9" class="text-center">Ma'lumot yo'q</td>
+                        </tr>
+                      @endforelse
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -131,7 +133,8 @@
 
 <!-- Xarajat Model -->
 <div class="modal" id="xarajat" tabindex="-1">
-  <form action="#" method="post">
+  <form action="{{ route('moliya_balans_to_xarajat') }}" method="post">
+    @csrf 
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -139,7 +142,17 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
+          <label for="amount" class="mb-2">Xarajat summasi</label>
+          <input type="text" name="amount" class="form-control" id="amount" required>
+          <label for="payment_method" class="my-2">Xarajat turi</label>
+          <select name="payment_method" class="form-select" required>
+            <option value="">Tanlang...</option>
+            <option value="cash">Naqt</option>
+            <option value="card">Karta</option>
+            <option value="bank">Bank</option>
+          </select>
+          <label for="description" class="my-2">Xarajat haqida</label>
+          <textarea name="description" class="form-control" required></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
@@ -151,7 +164,8 @@
 </div>
 <!-- Daromad Model -->
 <div class="modal" id="daromad" tabindex="-1">
-  <form action="#" method="post">
+  <form action="{{ route('moliya_balans_to_daromad') }}" method="post">
+    @csrf 
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -159,7 +173,17 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
+          <label for="amount" class="mb-2">Daromad summasi</label>
+          <input type="text" name="amount" class="form-control" id="amount" required>
+          <label for="payment_method" class="my-2">Daromad turi</label>
+          <select name="payment_method" class="form-select" required>
+            <option value="">Tanlang...</option>
+            <option value="cash">Naqt</option>
+            <option value="card">Karta</option>
+            <option value="bank">Bank</option>
+          </select>
+          <label for="description" class="my-2">Daromad haqida</label>
+          <textarea name="description" class="form-control" required></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>

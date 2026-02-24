@@ -42,4 +42,46 @@ class MoliyaController extends Controller{
         });  
     }
 
+    public function balansDaromad(BalansToKassaRequest $request){
+        $data = $request->validated();  
+        return DB::transaction(function () use ($data) {
+            $moliya = Moliya::first();
+            $balanceColumn = $data['payment_method'];
+            $moliya->decrement($balanceColumn, $data['amount']);
+            MoliyaHistory::create([
+                'type'=>'daromad',
+                'amount' => $data['amount'],
+                'payment_method' => $data['payment_method'],
+                'description' => $data['description'],
+                'status' => 'success',
+                'start_date' => now(),
+                'meneger_id' => auth()->id(),
+                'end_date' => now(),
+                'admin_id' => auth()->id(),
+            ]);
+            return redirect()->back()->with('success', __('Mablag\' muvaffaqiyatli daromadga o\'tkazildi.'));
+        });  
+    }
+
+    public function balansXarajat(BalansToKassaRequest $request){
+        $data = $request->validated();  
+        return DB::transaction(function () use ($data) {
+            $moliya = Moliya::first();
+            $balanceColumn = $data['payment_method'];
+            $moliya->decrement($balanceColumn, $data['amount']);
+            MoliyaHistory::create([
+                'type'=>'xarajat',
+                'amount' => $data['amount'],
+                'payment_method' => $data['payment_method'],
+                'description' => $data['description'],
+                'status' => 'success',
+                'start_date' => now(),
+                'meneger_id' => auth()->id(),
+                'end_date' => now(),
+                'admin_id' => auth()->id(),
+            ]);
+            return redirect()->back()->with('success', __('Mablag\' muvaffaqiyatli xarajatga o\'tkazildi.'));
+        });  
+    }
+
 }
