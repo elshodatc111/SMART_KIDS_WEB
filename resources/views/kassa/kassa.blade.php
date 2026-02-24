@@ -204,16 +204,38 @@
               <thead>
                 <tr class="text-center">
                   <th scope="col">#</th>
-                  <th scope="col">Summa</th>
-                  <th scope="col">Chiqim turi</th>
+                  <th scope="col">Bola</th>
+                  <th scope="col">Qaytarilgan summa</th>
+                  <th scope="col">To'lov turi</th>
+                  <th scope="col">Izoh</th>
+                  <th scope="col">Meneger</th>
+                  <th scope="col">Qaytarilgan vaqt</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td class="text-center">15 000 UZS(Naqt)</td>
-                  <td class="text-center">Chiqim</td>
-                </tr>
+                @forelse ($qaytar as $item)
+                  <tr>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td><a href="{{ route('kid_show', $item->kid_id) }}">{{ $item->kid->child_full_name }}</a></td>
+                    <td class="text-center">{{ number_format($item->amount, 0, '.', ' ') }} UZS</td>
+                    <td class="text-center">
+                      @if($item->payment_method=='cash')
+                        Naqd
+                      @elseif($item->payment_method=='card')
+                        Plastik
+                      @else
+                        Bank
+                      @endif
+                    </td>
+                    <td class="text-center">{{ $item->comment }}</td>
+                    <td class="text-center">{{ $item->admin->name }}</td>
+                    <td class="text-center">{{ $item->created_at }}</td>
+                  </tr>
+                @empty
+                  <tr>
+                    <td colspan="7" class="text-center">Qaytarilgan to'lovlar mavjud emas</td>
+                  </tr>
+                @endforelse
               </tbody>
             </table>
           </div>
@@ -239,16 +261,38 @@
               <thead>
                 <tr class="text-center">
                   <th scope="col">#</th>
-                  <th scope="col">Summa</th>
-                  <th scope="col">Chiqim turi</th>
+                  <th scope="col">Bola</th>
+                  <th scope="col">Qaytarilgan summa</th>
+                  <th scope="col">To'lov turi</th>
+                  <th scope="col">Izoh</th>
+                  <th scope="col">Meneger</th>
+                  <th scope="col">Qaytarilgan vaqt</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td class="text-center">15 000 UZS(Naqt)</td>
-                  <td class="text-center">Chiqim</td>
-                </tr>
+                @forelse ($chegirma as $item)
+                  <tr>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td><a href="{{ route('kid_show', $item->kid_id) }}">{{ $item->kid->child_full_name }}</a></td>
+                    <td class="text-center">{{ number_format($item->amount, 0, '.', ' ') }} UZS</td>
+                    <td class="text-center">
+                      @if($item->payment_method=='cash')
+                        Naqd
+                      @elseif($item->payment_method=='card')
+                        Plastik
+                      @else
+                        Bank
+                      @endif
+                    </td>
+                    <td class="text-center">{{ $item->comment }}</td>
+                    <td class="text-center">{{ $item->admin->name }}</td>
+                    <td class="text-center">{{ $item->created_at }}</td>
+                  </tr>
+                @empty
+                  <tr>
+                    <td colspan="7" class="text-center">Qaytarilgan to'lovlar mavjud emas</td>
+                  </tr>
+                @endforelse
               </tbody>
             </table>
           </div>

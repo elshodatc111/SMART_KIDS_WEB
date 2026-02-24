@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Kid\StoreKidPaymentRequest;
 use App\Http\Requests\Kid\StoreKidRequest;
 use App\Http\Requests\Kid\UpdateKidRequest;
+use App\Models\Kassa;
 use App\Models\Kid;
+use App\Models\KidPayment;
+use App\Models\Moliya;
 use App\Models\Note;
 use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class KidController extends Controller{
+
     public function kids(){
         $query = Kid::query();
         if (request()->has('search')) {
@@ -33,7 +39,8 @@ class KidController extends Controller{
     public function show(int $id){
         $kid = Kid::with('admin')->findOrFail($id);
         $notes = Note::where('type','kid')->where('type_id',$id)->orderby('id','desc')->get();
-        return view('kid.show',compact('kid','notes'));
+        $paymarts = KidPayment::where('kid_id', $id)->orderby('id','desc')->get();
+        return view('kid.show',compact('kid','notes','paymarts'));
     }
     
     public function kidUpdate(UpdateKidRequest $request){
@@ -59,7 +66,80 @@ class KidController extends Controller{
 
     public function createPayment(StoreKidPaymentRequest $request){
         $data = $request->validated();
-        dd($data);
+        if($data['payment_type'] == 'payment'){
+            $this->createTypePayment($data);
+        }elseif($data['payment_type'] == 'return'){
+            $this->createTypeReturn($data);
+        }else{
+            $this->createTypeDiscount($data);
+        }
+        return redirect()->back()->with('success', "To'lov saqlanildi");
+    }
+
+    protected function createTypePayment($data){
+        return DB::transaction(function () use ($data) {
+            if($data['payment_method'] === 'cash'){
+                $kid = Kid::lockForUpdate()->findOrFail($data['kid_id']);
+                $kid->increment('amount', $data['amount']);
+                Kassa::first()->increment('naqt', $data['amount']);
+            }else{
+                $moliya = Moliya::firstOrCreate();
+                if ($data['payment_method'] === 'card') {
+                    $moliya->increment('pending_card', $data['amount']);
+                } elseif ($data['payment_method'] === 'bank') {
+                    $moliya->increment('pending_bank', $data['amount']);
+                }
+            }
+            return KidPayment::create([
+                'kid_id'         => $data['kid_id'],
+                'payment_type'   => $data['payment_type'],
+                'payment_method' => $data['payment_method'],
+                'amount'         => $data['amount'],
+                'payment_status' => $data['payment_method'] === 'cash' ? 'success' : 'pending',
+                'comment'        => $data['comment'] ?? 'To\'lov qo\'shildi',
+                'admin_id'       => auth()->id(),
+            ]);
+        });
+    }
+
+    protected function createTypeReturn($data){
+        return DB::transaction(function () use ($data) {
+            $kid = Kid::lockForUpdate()->findOrFail($data['kid_id']);
+            $kid->decrement('amount', $data['amount']);
+            $kassa = Kassa::first();
+            if($data['payment_method'] === 'cash'){
+                $kassa->decrement('naqt', $data['amount']);
+            }elseif($data['payment_method'] === 'card'){
+                $kassa->decrement('card', $data['amount']);
+            }else{
+                $kassa->decrement('bank', $data['amount']);
+            }
+            return KidPayment::create([
+                'kid_id'         => $kid->id,
+                'payment_type'   => 'return',
+                'payment_method' => $data['payment_method'],
+                'amount'         => $data['amount'],
+                'payment_status' => 'success',
+                'comment'        => $data['comment'] ?? 'Pul qaytarildi',
+                'admin_id'       => auth()->id(),
+            ]);
+        });
+    }
+
+    protected function createTypeDiscount($data){
+        return DB::transaction(function () use ($data) {
+            $kid = Kid::lockForUpdate()->findOrFail($data['kid_id']);
+            $kid->increment('amount', $data['amount']);
+            return KidPayment::create([
+                'kid_id'         => $kid->id,
+                'payment_type'   => 'discount',
+                'payment_method' => $data['payment_method'],
+                'amount'         => $data['amount'],
+                'payment_status' => 'success',
+                'comment'        => $data['comment'] ?? null,
+                'admin_id'       => auth()->id(),
+            ]);
+        });
     }
 
 

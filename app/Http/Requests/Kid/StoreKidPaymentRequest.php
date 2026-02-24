@@ -21,8 +21,9 @@ class StoreKidPaymentRequest extends FormRequest{
 
     public function rules(): array{
         return [
-            'tranzaksion' => ['required', 'in:payment,discount,return'],
-            'type'        => ['required', 'in:naqt,card,bank'],
+            'kid_id' => ['required', 'integer', 'exists:kids,id'],
+            'payment_type' => ['required', 'in:payment,discount,return'],
+            'payment_method'        => ['required', 'in:cash,card,bank'],
             'amount'      => [
                 'required', 
                 'numeric', 
@@ -33,25 +34,25 @@ class StoreKidPaymentRequest extends FormRequest{
                     }
                 }
             ],
-            'description' => ['required', 'string', 'max:1000'],
+            'comment' => ['required', 'string', 'max:1000'],
         ];
     }
 
     protected function checkKassaBalance($amount, $fail): void{
         $kassa = DB::table('kassas')->first();
-        if (!$kassa || ($kassa->{$this->type} ?? 0) < $amount) {
-            $currentAmount = $kassa ? ($kassa->{$this->type} ?? 0) : 0;
+        if (!$kassa || ($kassa->{$this->payment_type} ?? 0) < $amount) {
+            $currentAmount = $kassa ? ($kassa->{$this->payment_type} ?? 0) : 0;
             $fail(__('bolalar_show.kassada_yetarli_mablag_yoq') . number_format($currentAmount, 0, '.', ' ') . " UZS");
         }
     }
 
     public function messages(): array{
         return [
-            'tranzaksion.required' => __('bolalar_show.teanzaksiya_turini_tanlang'),
-            'type.required'        => __('bolalar_show.tolov_turini_tanlang'),
+            'payment_method.required' => __('bolalar_show.teanzaksiya_turini_tanlang'),
+            'payment_type.required'        => __('bolalar_show.tolov_turini_tanlang'),
             'amount.required'      => __('bolalar_show.tulov_summa_kiriting'),
             'amount.numeric'       => __('bolalar_show.summa_faqat_raqam_bolsin'),
-            'description.required' => __('bolalar_show.tolov_haqida_malumot_yozing'),
+            'comment.required' => __('bolalar_show.tolov_haqida_malumot_yozing'),
         ];
     }
 }

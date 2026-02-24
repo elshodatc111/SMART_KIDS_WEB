@@ -8,6 +8,7 @@ use App\Http\Controllers\Emploes\EmploesDavomadController;
 use App\Http\Controllers\EmploesController;
 use App\Http\Controllers\KassaController;
 use App\Http\Controllers\KidController;
+use App\Http\Controllers\MoliyaController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('lang/{locale}', function ($locale) {if (in_array($locale, ['uz', 'ru'])) {session()->put('locale', $locale);}return redirect()->back();})->name('changeLang');
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/kids/note/create', [KidController::class, 'noteCreate'])->name('kids_note_create'); // Yangi izoh qoldirish
     Route::post('/kids/payment/create', [KidController::class, 'createPayment'])->name('kids_payment_create'); // To'lov qilish
     Route::get('/kid/{id}', [KidController::class, 'show'])->name('kid_show'); // Bola haqida
+    Route::get('/moliya', [MoliyaController::class, 'moliya'])->name('moliya'); // Moliya Page
 
     
 });

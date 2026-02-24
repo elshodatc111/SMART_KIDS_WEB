@@ -41,7 +41,13 @@
                 <div class="col-6 mb-1">Tug'ilgan kuni:</div>
                 <div class="col-6 mb-1" style="text-align: right">{{ $kid->tkun->format('Y-m-d') }}</div>
                 <div class="col-6 mb-1">Jinsi:</div>
-                <div class="col-6 mb-1" style="text-align: right">{{ $kid->gender }}</div>
+                <div class="col-6 mb-1" style="text-align: right">
+                  @if($kid->gender == 'male')
+                    O'g'il bola 
+                  @else
+                    Qiz bola
+                  @endif
+                </div>
                 <div class="col-6 mb-1">Ota-onasi:</div>
                 <div class="col-6 mb-1" style="text-align: right">{{ $kid->parent_full_name }}</div>
                 <div class="col-6 mb-1">Telefon raqam:</div>
@@ -163,21 +169,55 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">To'lovlar tarixi</h5>
-              <div class="table-responsive">
-                <table class="table table-bordered" style="font-size: 14px">
-                  <thead>
-                    <tr class="text-center">
-                      <th scope="col">#</th>
-                      <th scope="col">To'lov summasi</th>
-                      <th scope="col">To'lov turi</th>
-                      <th scope="col">To'lov xolati</th>
-                      <th scope="col">To'lov haqida</th>
-                      <th scope="col">Meneger</th>
-                      <th scope="col">To'lov vaqti</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
+              <div class="notes-wrapper" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+                <div class="table-responsive">
+                  <table class="table table-bordered" style="font-size: 14px">
+                    <thead>
+                      <tr class="text-center">
+                        <th scope="col">#</th>
+                        <th scope="col">To'lov summasi</th>
+                        <th scope="col">To'lov turi</th>
+                        <th scope="col">To'lov xolati</th>
+                        <th scope="col">To'lov haqida</th>
+                        <th scope="col">Meneger</th>
+                        <th scope="col">To'lov vaqti</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @forelse ($paymarts as $paymart)
+                        <tr>
+                          <td class="text-center">{{ $loop->iteration }}</td>
+                          <td class="text-center">{{ number_format($paymart->amount, 0, '.', ' ') }} UZS</td>
+                          <td class="text-center">
+                            @if($paymart->payment_type == 'payment')
+                              <span class="badge bg-primary">To'lov ({{ $paymart->payment_method }})</span>
+                            @elseif($paymart->payment_type == 'discount')
+                              <span class="badge bg-warning">Chegirma</span>
+                            @else
+                              <span class="badge bg-danger">Qaytarish ({{ $paymart->payment_method }})</span>
+                            @endif
+                          </td>
+                          <td class="text-center">
+                            @if($paymart->payment_status == 'success')
+                              <span class="badge bg-success">To'langan</span>
+                            @elseif($paymart->payment_status == 'cancel')
+                              <span class="badge bg-danger">Bekor qilindi</span>
+                            @else
+                              <span class="badge bg-warning">Kutilmoqda</span>
+                            @endif
+                          </td>
+                          <td>{{ $paymart->comment ?? '-' }}</td>
+                          <td>{{ $paymart->admin->name ?? '-' }}</td>
+                          <td class="text-center">{{ $paymart->created_at->format('d.m.Y H:i') }}</td>
+                        </tr>
+                      @empty
+                        <tr>
+                          <td colspan="7" class="text-center">To'lovlar mavjud emas</td>
+                        </tr>
+                      @endforelse
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -243,7 +283,7 @@
 <div class="modal" id="tulov" tabindex="-1">
   <form action="{{ route('kids_payment_create') }}" method="post">
     @csrf
-    <input type="hidden" name="id" value="{{ $kid->id }}">
+    <input type="hidden" name="kid_id" value="{{ $kid->id }}">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -254,8 +294,8 @@
           <div class="row">
             <div class="col-6">              
               <div class="mb-2">
-                <label for="tranzaksion" class="mb-2">Tranzaksiya</label>
-                <select name="tranzaksion" class="form-select" required>
+                <label for="payment_type" class="mb-2">Tranzaksiya</label>
+                <select name="payment_type" class="form-select" required>
                   <option value="payment">To'lov</option>
                   <option value="discount">Chegirma</option>
                   <option value="return">To'lov qaytarish</option>
@@ -264,10 +304,10 @@
             </div>
             <div class="col-6">              
               <div class="mb-2">
-                <label for="type" class="mb-2">To'lov turi</label>
-                <select name="type" class="form-select" required>
+                <label for="payment_method" class="mb-2">To'lov turi</label>
+                <select name="payment_method" class="form-select" required>
                   <option value="">Tanlang...</option>
-                  <option value="naqt">Naqt</option>
+                  <option value="cash">Naqt</option>
                   <option value="card">Plastik</option>
                   <option value="bank">Bank</option>
                 </select>
@@ -279,8 +319,8 @@
             <input type="text" name="amount" class="form-control" id="amount" required>
           </div>
           <div class="mb-2">
-            <label for="description" class="mb-2">To'lov haqida</label>
-            <textarea name="description" class="form-control" required></textarea>
+            <label for="comment" class="mb-2">To'lov haqida</label>
+            <textarea name="comment" class="form-control" required></textarea>
           </div>
         </div>
         <div class="modal-footer">

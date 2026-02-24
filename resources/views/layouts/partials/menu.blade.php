@@ -70,7 +70,7 @@
 </li>
 
 <li class="nav-item">
-  <a class="nav-link collapsed" href="#">
+  <a class="nav-link {{ request()->routeIs(['moliya']) ? '' : 'collapsed' }}" href="{{ route('moliya') }}">
     <i class="bi bi-bank"></i>
     <span>{{ __('menu.finance') }}</span>
   </a>
