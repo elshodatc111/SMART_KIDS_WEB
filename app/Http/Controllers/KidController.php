@@ -9,6 +9,7 @@ use App\Models\Kassa;
 use App\Models\Kid;
 use App\Models\KidPayment;
 use App\Models\Moliya;
+use App\Models\MoliyaHistory;
 use App\Models\Note;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Facades\DB;
@@ -159,6 +160,39 @@ class KidController extends Controller{
             $payment->save();
         });
         return redirect()->back()->with('success', "To'lov bekor qilindi");
+    }
+
+    public function successPayment(int $id){
+        $payment = KidPayment::findOrFail($id);
+        if($payment->payment_status === 'success'){
+            return redirect()->back()->with('error', "To'lov allaqachon tasdiqlangan");
+        }
+        DB::transaction(function () use ($payment) {
+            $payment->update(['payment_status' => 'success']);
+            if($payment->payment_method === 'card'){
+                Moliya::first()->decrement('pending_card', $payment->amount);
+                Moliya::first()->increment('card', $payment->amount);
+            }else{
+                Moliya::first()->decrement('pending_bank', $payment->amount);
+                Moliya::first()->increment('bank', $payment->amount);
+            }
+            $kid = Kid::lockForUpdate()->findOrFail($payment->kid_id);
+            $kid->increment('amount', $payment->amount);
+            $payment->comment = $payment->comment." (".auth()->user()->name.")";   
+            $payment->save();
+            MoliyaHistory::create([
+                'type' => 'tulov',
+                'amount' => $payment->amount,
+                'payment_method' => $payment->payment_method,
+                'description' => $payment->comment,
+                'status' => 'success',
+                'start_date'=> now(),
+                'meneger_id' => auth()->id(),
+                'end_date' => now(),
+                'admin_id' => auth()->id(),
+            ]);
+        });
+        return redirect()->back()->with('success', "To'lov tasdiqlandi");
     }
 
 }

@@ -11,7 +11,7 @@
       </nav>
     </div><section class="section dashboard">
       <div class="row">
-
+        <!-- Balansda mavjud -->
         <div class="col-lg-7">
           <div class="card">
             <div class="card-body">
@@ -23,7 +23,7 @@
                           <h5 class="mb-0">{{ number_format($moliya->cash, 0, '.', ' ') }}</h5>
                           <div class="text-muted small">Naqd</div>
                       </div>
-                      <button class="btn btn-outline-danger w-100 mt-2">Xarajat</button>
+                      <button class="btn btn-outline-danger w-100 mt-2" data-bs-toggle="modal" data-bs-target="#xarajat">Xarajat</button>
                   </div>
                   <div class="col-lg-4">
                       <div class="op-card rounded p-2 text-center bg-light">
@@ -31,7 +31,7 @@
                           <h5 class="mb-0">{{ number_format($moliya->card, 0, '.', ' ') }}</h5>
                           <div class="text-muted small">Plastik</div>
                       </div>
-                      <button class="btn btn-outline-success w-100 mt-2">Daromad</button>
+                      <button class="btn btn-outline-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#daromad">Daromad</button>
                   </div>
                   <div class="col-lg-4">
                       <div class="op-card rounded p-2 text-center bg-light">
@@ -39,12 +39,13 @@
                           <h5 class="mb-0">{{ number_format($moliya->bank, 0, '.', ' ') }}</h5>
                           <div class="text-muted small">Bank</div>
                       </div>
-                      <button class="btn btn-outline-primary w-100 mt-2">Kassaga qaytarish</button>
+                      <button class="btn btn-outline-primary w-100 mt-2" data-bs-toggle="modal" data-bs-target="#balansToKassa">Kassaga qaytarish</button>
                   </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- Kutilayotgan to'lovlar -->
         <div class="col-lg-5">
           <div class="card">
             <div class="card-body">
@@ -70,6 +71,7 @@
             </div>
           </div>
         </div>
+        <!-- Balans tarixi -->
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
@@ -91,16 +93,113 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @forelse ($moliyaHistory as $item)
+                      <tr class="text-center">
+                        <td>{{ $loop->iteration }}</td>
+                        <td>
+                          {{ $item->type }}
+                        </td>
+                        <td>{{ number_format($item->amount, 0, '.', ' ') }}</td>
+                        <td>
+                          @if($item->payment_method=='cash')
+                            Naqd
+                          @elseif($item->payment_method=='card')
+                            Plastik
+                          @else
+                            Bank
+                          @endif
+                        </td>
+                        <td>{{ $item->description }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>{{ $item->meneger ? $item->meneger->name : 'Noma\'lum' }}</td>
+                        <td>{{ $item->updated_at }}</td>
+                        <td>{{ $item->admin ? $item->admin->name : 'Noma\'lum' }}</td>
+                      </tr>
+                    @empty
+                      <tr>
+                        <td colspan="9" class="text-center">Ma'lumot yo'q</td>
+                      </tr>
+                    @endforelse
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
+<!-- Xarajat Model -->
+<div class="modal" id="xarajat" tabindex="-1">
+  <form action="#" method="post">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Xarajat</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
+          <button type="submit" class="btn btn-primary">Saqlash</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- Daromad Model -->
+<div class="modal" id="daromad" tabindex="-1">
+  <form action="#" method="post">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Daromad</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
+          <button type="submit" class="btn btn-primary">Saqlash</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- BalansToKassa Model -->
+<div class="modal" id="balansToKassa" tabindex="-1">
+  <form action="{{ route('moliya_balans_to_kassa') }}" method="post">
+    @csrf 
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Balansdan kassaga o'tqazma</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="amount" class="mb-2">O'tqazma summasi</label>
+          <input type="text" name="amount" class="form-control" id="amount" required>
+          <label for="payment_method" class="my-2">O'tqazma turi</label>
+          <select name="payment_method" class="form-select" required>
+            <option value="">Tanlang...</option>
+            <option value="cash">Naqt</option>
+            <option value="card">Karta</option>
+            <option value="bank">Bank</option>
+          </select>
+          <label for="description" class="my-2">O'tqazma haqida</label>
+          <textarea name="description" class="form-control" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
+          <button type="submit" class="btn btn-primary">Saqlash</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
 <!-- Tasdiqlanmagan to'lovlar -->
 <div class="modal fade" id="pendingPaymart" tabindex="-1">
   <div class="modal-dialog modal-xl">
@@ -144,7 +243,7 @@
                     <td class="text-center">{{ $item->created_at }}</td>
                     <td>
                       <div class="d-flex justify-content-center gap-1">
-                        <form action="#" method="POST">
+                        <form action="{{ route('kids_payment_success', $item->id) }}" method="POST">
                           @csrf
                           <button class="btn btn-success btn-sm"><i class="bi bi-check-lg"></i></button>
                         </form>
@@ -179,6 +278,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <p>Oxirgi 45 kun ichidagi bekor qilingan to'lovlar</p>
         <div class="table-responsive">
           <table class="table table-hover table-bordered align-middle" style="font-size: 13px;">
             <thead class="bg-light text-center text-nowrap">

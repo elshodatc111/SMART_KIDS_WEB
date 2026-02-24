@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/kid/{id}', [KidController::class, 'show'])->name('kid_show'); // Bola haqida
     Route::get('/moliya', [MoliyaController::class, 'moliya'])->name('moliya'); // Moliya Page
     Route::post('/kids/payment/cancel/{id}', [KidController::class, 'cancelPayment'])->name('kids_payment_cancel'); // To'lov bekor qilish
+    Route::post('/kids/payment/success/{id}', [KidController::class, 'successPayment'])->name('kids_payment_success'); // To'lov tasdiqlash
+    Route::post('/moliya/balansToKassa', [MoliyaController::class, 'balansToKassa'])->name('moliya_balans_to_kassa'); // Balans To Kassa
 
     
 });
