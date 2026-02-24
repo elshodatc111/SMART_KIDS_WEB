@@ -142,5 +142,23 @@ class KidController extends Controller{
         });
     }
 
+    public function cancelPayment(int $id){
+        $payment = KidPayment::findOrFail($id);
+        if($payment->payment_status === 'canceled'){
+            return redirect()->back()->with('error', "To'lov allaqachon bekor qilingan");
+        }
+        DB::transaction(function () use ($payment) {
+            $payment->update(['payment_status' => 'canceled']);
+            if($payment->payment_method === 'card'){
+                Moliya::first()->decrement('pending_card', $payment->amount);
+            }else{
+                Moliya::first()->decrement('pending_bank', $payment->amount);
+            }
+            $payment->payment_status = 'canceled';
+            $payment->comment = $payment->comment." (".auth()->user()->name.")";   
+            $payment->save();
+        });
+        return redirect()->back()->with('success', "To'lov bekor qilindi");
+    }
 
 }

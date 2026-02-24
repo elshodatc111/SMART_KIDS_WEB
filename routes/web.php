@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/kids/payment/create', [KidController::class, 'createPayment'])->name('kids_payment_create'); // To'lov qilish
     Route::get('/kid/{id}', [KidController::class, 'show'])->name('kid_show'); // Bola haqida
     Route::get('/moliya', [MoliyaController::class, 'moliya'])->name('moliya'); // Moliya Page
+    Route::post('/kids/payment/cancel/{id}', [KidController::class, 'cancelPayment'])->name('kids_payment_cancel'); // To'lov bekor qilish
 
     
 });

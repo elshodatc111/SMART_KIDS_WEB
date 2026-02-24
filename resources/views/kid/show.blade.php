@@ -200,7 +200,7 @@
                           <td class="text-center">
                             @if($paymart->payment_status == 'success')
                               <span class="badge bg-success">To'langan</span>
-                            @elseif($paymart->payment_status == 'cancel')
+                            @elseif($paymart->payment_status == 'canceled')
                               <span class="badge bg-danger">Bekor qilindi</span>
                             @else
                               <span class="badge bg-warning">Kutilmoqda</span>
