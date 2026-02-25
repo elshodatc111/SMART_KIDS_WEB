@@ -24,8 +24,8 @@ class KassaPendingRequest extends FormRequest{
 
     public function messages(): array{
         return [
-            'id.required' => 'ID topilmadi.',
-            'id.exists' => 'Xatolik: Bunday ariza mavjud emas yoki u allaqachon yakunlangan.',
+            'id.required' => __('kassa.id_kiriting'),
+            'id.exists' => __('kassa.bunday_ariza_mavjud_emas'),
         ];
     }
     

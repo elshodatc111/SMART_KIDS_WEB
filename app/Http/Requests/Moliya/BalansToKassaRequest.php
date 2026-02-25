@@ -30,22 +30,22 @@ class BalansToKassaRequest extends FormRequest{
             $amount = $this->amount;
             $moliya = Moliya::first();
             if (!$moliya) {
-                $validator->errors()->add('amount', 'Tizimda moliya ma’lumotlari topilmadi.');
+                $validator->errors()->add('amount', __('kassa.moliya_topilmadi'));
                 return;
             }
             $balanceColumn = $method; 
             if ($moliya->$balanceColumn < $amount) {
-                $validator->errors()->add('amount', "Balansda yetarli mablag' mavjud emas. (Joriy balans: " . number_format($moliya->$balanceColumn) . " so'm)");
+                $validator->errors()->add('amount', __('kassa.balansda_yetishmaydi') . number_format($moliya->$balanceColumn) . " UZS)");
             }
         });
     }
 
     public function messages(): array{
         return [
-            'amount.required' => 'Summani kiritish majburiy.',
-            'amount.numeric' => 'Summa faqat raqamlardan iborat bo‘lishi kerak.',
-            'payment_method.required' => 'O‘tkazma turini tanlang.',
-            'description.required' => 'Tavsif yozish majburiy.',
+            'amount.required' => __('kassa.summa_kiriting'), 
+            'amount.numeric' => __('kassa.summa_numeric'),
+            'payment_method.required' => __('kassa.method_required'),
+            'description.required' => __('kassa.description_required'),
         ];
     }
 }

@@ -40,7 +40,7 @@ class MoliyaController extends Controller{
                 'end_date' => now(),
                 'admin_id' => auth()->id(),
             ]);
-            return redirect()->back()->with('success', __('Mablag\' muvaffaqiyatli kassa balansiga o\'tkazildi.'));
+            return redirect()->back()->with('success', __('kassa.balansdan_kassaga'));
         });  
     }
 
@@ -61,7 +61,7 @@ class MoliyaController extends Controller{
                 'end_date' => now(),
                 'admin_id' => auth()->id(),
             ]);
-            return redirect()->back()->with('success', __('Mablag\' muvaffaqiyatli daromadga o\'tkazildi.'));
+            return redirect()->back()->with('success', __('kassa.balans_daromad'));
         });  
     }
 
@@ -82,7 +82,7 @@ class MoliyaController extends Controller{
                 'end_date' => now(),
                 'admin_id' => auth()->id(),
             ]);
-            return redirect()->back()->with('success', __('Mablag\' muvaffaqiyatli xarajatga o\'tkazildi.'));
+            return redirect()->back()->with('success', __('kassa.balans_xarajat'));
         });  
     }
 
@@ -110,7 +110,7 @@ class MoliyaController extends Controller{
                 'start_date' => now(),
                 'meneger_id' => auth()->id(),
             ]);
-            return redirect()->back()->with('success', __('Kassadan xarajat muvaffaqiyatli amalga oshirildi. Tasdiqlanish kutilmoqda'));
+            return redirect()->back()->with('success', __('kassa.kassadan_xarajat'));
         });
     }
 
@@ -138,7 +138,7 @@ class MoliyaController extends Controller{
                 'start_date' => now(),
                 'meneger_id' => auth()->id(),
             ]);
-            return redirect()->back()->with('success', __('Kassadan chiqim muvaffaqiyatli amalga oshirildi. Tasdiqlanish kutilmoqda'));
+            return redirect()->back()->with('success', __('kassa.kassadan_chiqim'));
         });
     }
 
@@ -160,7 +160,7 @@ class MoliyaController extends Controller{
                 $kassa->decrement('pending_bank', $amount);
             }
             $MoliyaHistory->update(['status' => 'canceled','end_date' => now(), 'admin_id' => auth()->id()]);
-            return redirect()->back()->with('success', "Kassadan xarajat bekor qilindi.");
+            return redirect()->back()->with('success', __('kassa.pending_canceled'));
         });
     }
 
@@ -189,7 +189,7 @@ class MoliyaController extends Controller{
                 $kassa->decrement('pending_bank', $amount);
             }
             $MoliyaHistory->update(['status' => 'success', 'end_date' => now(), 'admin_id' => auth()->id()]);
-            return redirect()->back()->with('success', __('Kassadan xarajat muvaffaqiyatli tasdiqlandi.'));
+            return redirect()->back()->with('success', __('kassa.pending_success'));
         });
     }
 

@@ -35,7 +35,7 @@ class KassaXarajatRequest extends FormRequest{
             }
             $balance = DB::table('kassas')->first(); 
             if (!$balance) {
-                $validator->errors()->add('amount', 'Kassa ma’lumotlari topilmadi.');
+                $validator->errors()->add('amount', __('kassa.moliya_topilmadi'));
                 return;
             }
             $method = $this->payment_method;
@@ -46,13 +46,13 @@ class KassaXarajatRequest extends FormRequest{
             } elseif($method === 'bank'){
                 $currentBalance = $balance->bank;
             } else {
-                $validator->errors()->add('payment_method', 'Noto‘g‘ri xarajat turi tanlandi.');
+                $validator->errors()->add('payment_method', __('kassa.noto_gri_xarajat_turi'));
                 return;
             }
             if ($this->amount > $currentBalance) {
                 $validator->errors()->add(
                     'amount', 
-                    "Tanlangan turda mablag' yetarli emas. Joriy qoldiq: " . number_format($currentBalance, 0, '.', ' ')
+                    __('kassa.balansda_yetishmaydi') . number_format($currentBalance, 0, '.', ' ')
                 );
             }
         });
@@ -60,10 +60,10 @@ class KassaXarajatRequest extends FormRequest{
 
     public function messages(): array{
         return [
-            'amount.required' => 'Xarajat summasini kiriting.',
-            'amount.numeric' => 'Summa faqat raqamlardan iborat bo‘lishi kerak.',
-            'payment_method.required' => 'Xarajat turini tanlang.',
-            'description.required' => 'Izoh qoldirish majburiy.',
+            'amount.required' => __('kassa.xarajat_summa'),
+            'amount.numeric' => __('kassa.summa_numeric'),
+            'payment_method.required' => __('kassa.xarajat_turi'),
+            'description.required' => __('kassa.xarajat_haqida'),
         ];
     }
 }
