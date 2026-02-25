@@ -118,7 +118,7 @@
             <div class="card-body pb-0">
               <div class="row">
                 <div class="col-6">
-                  <h5 class="card-title">Tarbiyalanuvchi hisobini to'ldirish</h5>
+                  <h5 class="card-title">To'lov</h5>
                 </div>
                 <div class="col-6 pt-1" style="text-align: right">
                   <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#tulov"><i class="bi bi-plus"></i> To'lov</button>
@@ -126,46 +126,101 @@
               </div>
             </div>
           </div>
+          <!-- Bolani davomadi -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Bola davomadi</h5>
+              <div class="notes-wrapper" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+                <div class="table-responsive">
+                  <table class="table table-bordered" style="font-size: 14px">
+                    <thead>
+                      <tr class="text-center">
+                        <th scope="col">#</th>
+                        <th scope="col">Guruh</th>
+                        <th scope="col">Guruhga qo'shildi</th>
+                        <th scope="col">Meneger</th>
+                        <th scope="col">Guruhdan o'chirildi</th>
+                        <th scope="col">Meneger</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Guruh uchun to'lovlar -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Guruh uchun to'lovlar</h5>
+              <div class="notes-wrapper" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+                <div class="table-responsive">
+                  <table class="table table-bordered" style="font-size: 14px">
+                    <thead>
+                      <tr class="text-center">
+                        <th scope="col">#</th>
+                        <th scope="col">Guruh</th>
+                        <th scope="col">Guruhga qo'shildi</th>
+                        <th scope="col">Meneger</th>
+                        <th scope="col">Guruhdan o'chirildi</th>
+                        <th scope="col">Meneger</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Guruhlar tarixi -->
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Guruhlar tarixi</h5>
-              <div class="table-responsive">
-                <table class="table table-bordered" style="font-size: 14px">
-                  <thead>
-                    <tr class="text-center">
-                      <th scope="col">#</th>
-                      <th scope="col">Guruh</th>
-                      <th scope="col">Guruhga qo'shildi</th>
-                      <th scope="col">Meneger</th>
-                      <th scope="col">Guruhdan o'chirildi</th>
-                      <th scope="col">Meneger</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
+              <div class="notes-wrapper" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+                <div class="table-responsive">
+                  <table class="table table-bordered" style="font-size: 14px">
+                    <thead>
+                      <tr class="text-center">
+                        <th scope="col">#</th>
+                        <th scope="col">Guruh</th>
+                        <th scope="col">Guruhga qo'shildi</th>
+                        <th scope="col">Izoh</th>
+                        <th scope="col">Guruhga qo‘shdi</th>
+                        <th scope="col">Guruhdan o‘chirildi</th>
+                        <th scope="col">Guruhdan o‘chirdi</th> 
+                        <th scope="col">Guruhdagi holati</th> 
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @forelse($groups as $group)
+                        <tr>
+                          <td class="text-center">{{ $loop->iteration }}</td>
+                          <td><a href="{{ route('groups_show', $group->group->id) }}">{{ $group->group->group_name }}</a></td>
+                          <td class="text-center">{{ $group->start_date->format('d.m.Y') }}</td>
+                          <td>{{ $group->description ?? '-' }}</td>
+                          <td>{{ $group->startAdmin->name ?? '-' }}</td>
+                          <td class="text-center">{{ $group->end_date ? $group->end_date->format('d.m.Y') : '-' }}</td>
+                          <td>{{ $group->endAdmin->name ?? '-' }}</td>
+                          <td class="text-center">
+                            @if($group->status == 'active')
+                              <span class="badge bg-success">Aktiv</span>
+                            @else
+                              <span class="badge bg-danger">O'chirilgan</span>
+                            @endif
+                          </td>
+                        </tr>
+                        @empty
+                        <tr>
+                          <td colspan="9" class="text-center">Guruh tarixi mavjud emas</td> 
+                        </tr>
+                      @endforelse
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Guruh uchun to'lov</h5>
-              <div class="table-responsive">
-                <table class="table table-bordered" style="font-size: 14px">
-                  <thead>
-                    <tr class="text-center">
-                      <th scope="col">#</th>
-                      <th scope="col">Guruh</th>
-                      <th scope="col">To'lov so'mmasi</th>
-                      <th scope="col">To'lov vaqt</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          
+          <!-- To'lovlar tarixi -->
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">To'lovlar tarixi</h5>

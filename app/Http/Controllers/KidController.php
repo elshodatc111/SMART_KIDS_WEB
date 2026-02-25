@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Kid\StoreKidPaymentRequest;
 use App\Http\Requests\Kid\StoreKidRequest;
 use App\Http\Requests\Kid\UpdateKidRequest;
+use App\Models\GroupKid;
 use App\Models\Kassa;
 use App\Models\Kid;
 use App\Models\KidPayment;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class KidController extends Controller{
+class KidController extends Controller{ 
 
     public function kids(){
         $query = Kid::query();
@@ -41,7 +42,8 @@ class KidController extends Controller{
         $kid = Kid::with('admin')->findOrFail($id);
         $notes = Note::where('type','kid')->where('type_id',$id)->orderby('id','desc')->get();
         $paymarts = KidPayment::where('kid_id', $id)->orderby('id','desc')->get();
-        return view('kid.show',compact('kid','notes','paymarts'));
+        $groups = GroupKid::where('kid_id', $id)->get();
+        return view('kid.show',compact('kid','notes','paymarts','groups'));
     }
     
     public function kidUpdate(UpdateKidRequest $request){
