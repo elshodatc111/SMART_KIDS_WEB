@@ -42,6 +42,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/moliya/balansToKassa', [MoliyaController::class, 'balansToKassa'])->name('moliya_balans_to_kassa'); // Balans To Kassa
     Route::post('/moliya/balansDaromad', [MoliyaController::class, 'balansDaromad'])->name('moliya_balans_to_daromad'); // daromad
     Route::post('/moliya/balansXarajat', [MoliyaController::class, 'balansXarajat'])->name('moliya_balans_to_xarajat'); // xarajat
+    Route::post('/moliya/kassaXarajat', [MoliyaController::class, 'kassaXarajat'])->name('moliya_kassa_xarajat'); // kassa xarajat
+    Route::post('/moliya/kassaChiqim', [MoliyaController::class, 'kassaChiqim'])->name('moliya_kassa_chiqim'); // kassa chiqim
+    Route::post('/moliya/pending/canceled', [MoliyaController::class, 'pendingCanceled'])->name('moliya_pending_canceled'); // pending canceled
+    Route::post('/moliya/pending/success', [MoliyaController::class, 'pendingSuccess'])->name('moliya_pending_success'); // pending success
 
     
 });

@@ -109,7 +109,7 @@
                 <div class="card-body">
                     <h5 class="card-title text-danger">Tasdiqlanmagan operatsiyalar</h5>
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered align-middle" style="font-size: 13px;">
+                        <table class="table table-hover table-bordered align-middle" style="font-size: 14px;">
                             <thead class="bg-light text-center text-nowrap">
                                 <tr>
                                     <th>#</th>
@@ -122,20 +122,53 @@
                                 </tr>
                             </thead>
                             <tbody>
+                              @forelse($pending as $item)
                                 <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-nowrap font-monospace text-center">15,000 <small>Naqd</small></td>
-                                    <td class="text-center"><span class="badge bg-secondary">Chiqim</span></td>
-                                    <td class="d-none d-md-table-cell">Test Uchun</td>
-                                    <td class="text-center">12.12.2025 <br> <small class="text-muted">15:01</small></td>
-                                    <td class="d-none d-md-table-cell text-center small">E. Musurmonov</td>
-                                    <td>
-                                        <div class="d-flex justify-content-center gap-1">
-                                            <button class="btn btn-success btn-sm"><i class="bi bi-check-lg"></i></button>
-                                            <button class="btn btn-danger btn-sm"><i class="bi bi-x-lg"></i></button>
-                                        </div>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td class="text-nowrap font-monospace text-center">
+                                      {{ number_format($item->amount, 0, '.', ' ') }} 
+                                      <small>
+                                        @if($item->payment_method=='cash')
+                                          (Naqd)
+                                        @elseif($item->payment_method=='card')
+                                          (Plastik)
+                                        @else
+                                          (Bank)
+                                        @endif
+                                      </small>
+                                    </td>
+                                    <td class="text-center">
+                                      @if($item->type=='KassaToBalans')
+                                        Kassadan chiqim
+                                      @else
+                                        Xarajat
+                                      @endif
+                                    </td>
+                                    <td class="d-none d-md-table-cell">{{ $item->description }}</td>
+                                    <td class="text-center">{{ $item->created_at }}</td>
+                                    <td class="d-none d-md-table-cell text-center small">{{ optional($item->meneger)->name ?? 'N/A' }}</td>
+                                    <td class="d-flex gap-1 text-center justify-content-center">
+                                        <form action="{{ route('moliya_pending_success') }}" method="post">
+                                            @csrf 
+                                            <input type="hidden" name="id" value="{{ $item->id }}">
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                <i class="bi bi-check-lg"></i>
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('moliya_pending_canceled')  }}" method="post">
+                                            @csrf 
+                                            <input type="hidden" name="id" value="{{ $item->id }}">
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="bi bi-x-lg"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
+                              @empty
+                                <tr>
+                                  <td colspan="7" class="text-center">Tasdiqlanmagan operatsiyalar yo'q</td>
+                                </tr>
+                              @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -149,16 +182,26 @@
 
   <!-- Chiqim Modal -->
   <div class="modal" id="chiqim_post" tabindex="-1">
-    <form action="#" method="post">
+    <form action="{{ route('moliya_kassa_chiqim') }}" method="post">
       @csrf 
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Kassadan chiqim qilish</h5>
+            <h5 class="modal-title">Kassadan xarajat uchun chiqim qilish</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
+            <label for="amount" class="mb-2">Xarajat summasi</label>
+            <input type="text" class="form-control" id="amount" name="amount" required>
+            <label for="payment_method" class="my-2">Xarajat turi</label>
+            <select class="form-select" id="payment_method" name="payment_method" required>
+              <option value="">Tanlang</option>
+              <option value="cash">Naqt</option>
+              <option value="card">Karta</option>
+              <option value="bank">Bank</option>
+            </select>
+            <label for="description" class="my-2"></label>
+            <textarea name="description" class="form-control" required></textarea>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
@@ -170,7 +213,7 @@
   </div>
   <!-- Xarajat Modal -->
   <div class="modal" id="xarajat" tabindex="-1">
-    <form action="#" method="post">
+    <form action="{{ route('moliya_kassa_xarajat') }}" method="post">
       @csrf 
       <div class="modal-dialog">
         <div class="modal-content">
@@ -179,7 +222,17 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
+            <label for="amount" class="mb-2">Xarajat summasi</label>
+            <input type="text" class="form-control" id="amount2" name="amount" required>
+            <label for="payment_method" class="my-2">Xarajat turi</label>
+            <select class="form-select" id="payment_method" name="payment_method" required>
+              <option value="">Tanlang</option>
+              <option value="cash">Naqt</option>
+              <option value="card">Karta</option>
+              <option value="bank">Bank</option>
+            </select>
+            <label for="description" class="my-2">Izoh</label>
+            <textarea name="description" class="form-control" required></textarea>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
