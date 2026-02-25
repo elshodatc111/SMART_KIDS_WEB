@@ -35,4 +35,9 @@ class Kid extends Model{
     public function getAgeAttribute(){
         return $this->tkun->age;
     }
+
+    public function groupKids(){
+        return $this->hasMany(GroupKid::class, 'kid_id');
+    }
+
 }

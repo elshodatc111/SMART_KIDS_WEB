@@ -24,4 +24,8 @@ class Group extends Model{
     public function manager(): BelongsTo{
         return $this->belongsTo(User::class, 'meneger_id');
     }
+
+    public function groupKids(){
+        return $this->hasMany(GroupKid::class, 'group_id');
+    }
 }

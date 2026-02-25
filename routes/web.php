@@ -9,6 +9,7 @@ use App\Http\Controllers\EmploesController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\KassaController;
 use App\Http\Controllers\KidController;
+use App\Http\Controllers\KidDavomadController;
 use App\Http\Controllers\MoliyaController;
 use App\Http\Controllers\ProfileController;
 
@@ -57,6 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/groups/add/kid', [GroupController::class, 'addKid'])->name('groups_add_kid'); // Add Kid to Group
     Route::post('/groups/delete/kid', [GroupController::class, 'deleteKid'])->name('groups_delete_kid'); // Delete Kid from Group
     Route::post('/groups/delete', [GroupController::class, 'deleteGroup'])->name('groups_delete'); // Delete Group
+    Route::get('/kids/davomad', [KidDavomadController::class, 'showAllGroups'])->name('kid_davomad_show_all_groups'); // Show All Groups for Kid Davomad
+    Route::get('/kids/davomads/{id}', [KidDavomadController::class, 'show'])->name('kid_davomad_show'); // Show Group Davomad
+    Route::post('/kids/davomad/store', [KidDavomadController::class, 'storeAttendance'])->name('kid_davomad_store'); // Store Attendance
 
 
     

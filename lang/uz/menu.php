@@ -7,7 +7,7 @@ return [
     'cashier' => 'Kassa',
     'attendance' => 'Davomat',
     'staff_attendance' => 'Xodimlar davomadi',
-    'child_attendance' => 'Bolalar davomadi',
+    'child_attendance' => 'Guruhlar davomadi',
     'lead' => 'Arizalar (Lead)',
     'staff_leads' => 'Xodimlikka nomzodlar',
     'child_leads' => 'Qabulga arizalar',

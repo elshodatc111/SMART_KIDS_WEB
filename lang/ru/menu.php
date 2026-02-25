@@ -7,7 +7,7 @@ return [
     'cashier' => 'Касса',
     'attendance' => 'Посещаемость',
     'staff_attendance' => 'Посещаемость сотрудников',
-    'child_attendance' => 'Посещаемость детей',
+    'child_attendance' => 'Посещаемость групп',
     'lead' => 'Лиды (Заявки)',
     'staff_leads' => 'Кандидаты в сотрудники',
     'child_leads' => 'Заявки на прием',
