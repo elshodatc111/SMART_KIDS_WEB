@@ -49,6 +49,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/moliya/pending/success', [MoliyaController::class, 'pendingSuccess'])->name('moliya_pending_success'); // pending success
     Route::get('/groups', [GroupController::class, 'groups'])->name('groups'); // Guruhlar
     Route::post('/groups/create', [GroupController::class, 'GroupStore'])->name('groups_create'); // Create Group
+    Route::post('/groups/create/eslatma', [GroupController::class, 'createNote'])->name('groups_create_note'); // Create Group Note
+    Route::post('/groups/update', [GroupController::class, 'update'])->name('groups_update'); // Update Group
+    Route::get('/groups/show/{id}', [GroupController::class, 'show'])->name('groups_show'); // Show Group
+
 
     
 });

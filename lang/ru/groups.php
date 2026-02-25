@@ -16,4 +16,17 @@ return [
     'save' => 'Сохранить',
     'cancel' => 'Отмена',
     'guruhlar_mavjud_emas' => 'Группы отсутствуют',
+    'note_added_successfully' => 'Заметка успешно добавлена.',
+    'group' => 'Группа',
+    'edit_group' => 'Редактировать группу',
+    'add_teacher' => 'Добавить воспитателя',
+    'add_kid' => 'Добавить ребёнка',
+    'delete_group' => 'Удалить группу',
+    'eslatmalar' => 'Заметки',
+    'eslatma_matni' => 'Текст заметки',
+    'eslatma_vaqti' => 'Время заметки',
+    'eslatmalar_mavjud_emas' => 'Заметки отсутствуют',
+    'request_success_update' => 'Группа была успешно обновлена.',
+
+    
 ];

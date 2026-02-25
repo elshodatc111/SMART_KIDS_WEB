@@ -16,4 +16,18 @@ return [
     'save' => 'Saqlash',
     'cancel' => 'Bekor qilish',
     'guruhlar_mavjud_emas' => 'Guruhlar mavjud emas',
+    'note_added_successfully' => 'Eslatma muvaffaqiyatli qo‘shildi.',
+    'group' => 'Guruh',
+    'edit_group' => 'Guruhni tahrirlash',
+    'add_teacher' => 'Tarbiyachi qo‘shish',
+    'add_kid' => 'Bola qo‘shish',
+    'delete_group' => 'Guruhni o‘chirish',
+    'eslatmalar' => 'Eslatmalar',
+    'eslatma_matni' => 'Eslatma matni',
+    'eslatma_vaqti' => 'Eslatma vaqti',
+    'eslatmalar_mavjud_emas' => 'Eslatmalar mavjud emas',
+    'request_success_update' => 'Guruh muvaffaqiyatli yangilandi.',
+    # Tarjima qilib qo'shish kerak bo'lganlar
+
+
 ];
