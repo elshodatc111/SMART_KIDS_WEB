@@ -86,6 +86,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Summa</th>
                         <th scope="col">To'lov turi</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Izoh</th>
                         <th scope="col">To'lov vaqti</th>
                         <th scope="col">Meneger</th>
@@ -110,11 +111,18 @@
                               Bank
                             @endif
                           </td>
+                          <td>
+                            @if($item->status == 'success')
+                              <span class="badge bg-success">Tasdiqlangan</span>
+                            @else
+                              <span class="badge bg-danger">Bekor qilingan</span>
+                            @endif
+                          </td>
                           <td>{{ $item->description }}</td>
                           <td>{{ $item->created_at }}</td>
-                          <td>{{ $item->meneger ? $item->meneger->name : 'Noma\'lum' }}</td>
+                          <td>{{ $item->meneger ? $item->meneger->name : '   ' }}</td>
                           <td>{{ $item->updated_at }}</td>
-                          <td>{{ $item->admin ? $item->admin->name : 'Noma\'lum' }}</td>
+                          <td>{{ $item->admin ? $item->admin->name : '   ' }}</td>
                         </tr>
                       @empty
                         <tr>
