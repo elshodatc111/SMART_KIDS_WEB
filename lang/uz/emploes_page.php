@@ -37,4 +37,11 @@ return [
     'status_active' => 'Faol',
     'status_noactive' => 'Faol emas',
     'status_delete' => 'O‘chirilgan',
+    // Emploes Show Page
+    'paymart_success'=> "To‘lov muvaffaqiyatli amalga oshirildi.",
+    'xodimga_ish_haqi' => "Xodimga ish haqi: ",
+    'kassada_mablag_yetarli_emas' => "Kassada mablag‘ yetarli emas. Hozirgi qoldiq: ",
+    'kassa_jadvali_topilmadi' => "Kassa jadvali topilmadi.",
+    'ish_haqi_summasi_raqamlardan_iborat_bolishi_kerak' => "Ish haqi summasi raqamlardan iborat bo‘lishi kerak.",
+    'tulov_summasi_kamida_1_som_bolishi_kerak' => "To‘lov summasi kamida 1 so‘m bo‘lishi kerak.",
 ];

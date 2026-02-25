@@ -8,7 +8,7 @@ return new class extends Migration{
     public function up(): void{
         Schema::create('moliya_histories', function (Blueprint $table) {
             $table->id();
-            $table->enum("type", ['tulov','xarajat','KassaToBalans','BalansToKassa','daromad']);
+            $table->enum("type", ['tulov','xarajat','KassaToBalans','BalansToKassa','daromad','ish_haqi']);
             $table->decimal("amount", 15, 0);
             $table->enum("payment_method", ['cash', 'card', 'bank'])->nullable();
             $table->string("description");

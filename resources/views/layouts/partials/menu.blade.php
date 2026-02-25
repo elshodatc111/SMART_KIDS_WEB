@@ -20,7 +20,7 @@
 </li>
 
 <li class="nav-item">
-  <a class="nav-link {{ request()->routeIs(['emploes']) ? '' : 'collapsed' }}" href="{{ route('emploes') }}">
+  <a class="nav-link {{ request()->routeIs(['emploes','emploes_show']) ? '' : 'collapsed' }}" href="{{ route('emploes') }}">
     <i class="bi bi-person-badge"></i>
     <span>{{ __('menu.emploes') }}</span>
   </a>

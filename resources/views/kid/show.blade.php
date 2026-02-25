@@ -126,24 +126,43 @@
               </div>
             </div>
           </div>
-          <!-- Bolani davomadi -->
+          <!-- Bolani davomadi --> 
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Bola davomadi</h5>
-              <div class="notes-wrapper" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+              <div class="notes-wrapper" style="max-height: 200px; overflow-y: auto; overflow-x: hidden;">
                 <div class="table-responsive">
                   <table class="table table-bordered" style="font-size: 14px">
                     <thead>
                       <tr class="text-center">
                         <th scope="col">#</th>
                         <th scope="col">Guruh</th>
-                        <th scope="col">Guruhga qo'shildi</th>
-                        <th scope="col">Meneger</th>
-                        <th scope="col">Guruhdan o'chirildi</th>
+                        <th scope="col">Davomad kuni</th>
+                        <th scope="col">Davomad holati</th>
                         <th scope="col">Meneger</th>
                       </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                      @forelse($davomad as $dav)
+                        <tr>
+                          <td class="text-center">{{ $loop->iteration }}</td>
+                          <td><a href="{{ route('groups_show', $dav->group->id) }}">{{ $dav->group->group_name }}</a></td>
+                          <td class="text-center">{{ $dav->attendance_date->format('d.m.Y') }}</td>
+                          <td class="text-center">
+                            @if($dav->status == 'keldi')
+                              <span class="badge bg-success">Keldi</span>
+                            @else
+                              <span class="badge bg-danger">Kelmadi</span>
+                            @endif
+                          </td>
+                          <td class="text-center">{{ $dav->creator->name ?? '-' }}</td>
+                        </tr>
+                      @empty
+                        <tr>
+                          <td colspan="5" class="text-center">Davomad ma'lumotlari mavjud emas</td>
+                        </tr>
+                      @endforelse
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -224,7 +243,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">To'lovlar tarixi</h5>
-              <div class="notes-wrapper" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+              <div class="notes-wrapper" style="max-height: 300px; overflow-y: auto; overflow-x: hidden;">
                 <div class="table-responsive">
                   <table class="table table-bordered" style="font-size: 14px">
                     <thead>

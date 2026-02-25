@@ -38,7 +38,7 @@
                     @forelse ($users as $user)
                       <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
-                        <td><a href="#">{{ $user->name }}</a></td>
+                        <td><a href="{{ route('emploes_show', $user->id) }}">{{ $user->name }}</a></td>
                         <td>{{ preg_replace('/(\+\d{3})(\d{2})(\d{3})(\d{4})/', '$1 $2 $3 $4', $user->phone) }}</td>
                         <td class="text-center">
                           @if($user->type=='drektor')

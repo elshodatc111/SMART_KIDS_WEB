@@ -37,4 +37,13 @@ return [
     'status_active' => 'Активный',
     'status_noactive' => 'Неактивный',
     'status_delete' => 'Удалённый',
+    // Emploes Show Page
+    'paymart_success'=> "Платёж успешно выполнен.",
+    'xodimga_ish_haqi' => "Заработная плата сотруднику: ",
+    'kassada_mablag_yetarli_emas' => "В кассе недостаточно средств. Текущий остаток: ",
+    'kassa_jadvali_topilmadi' => "Кассовый журнал не найден.",
+    'ish_haqi_summasi_raqamlardan_iborat_bolishi_kerak' => "Сумма заработной платы должна состоять из цифр.",
+    'tulov_summasi_kamida_1_som_bolishi_kerak' => "Сумма платежа должна быть не менее 1 сома.",
+
+
 ];

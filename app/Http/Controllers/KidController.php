@@ -8,6 +8,7 @@ use App\Http\Requests\Kid\UpdateKidRequest;
 use App\Models\GroupKid;
 use App\Models\Kassa;
 use App\Models\Kid;
+use App\Models\KidDavomad;
 use App\Models\KidPayment;
 use App\Models\Moliya;
 use App\Models\MoliyaHistory;
@@ -43,7 +44,9 @@ class KidController extends Controller{
         $notes = Note::where('type','kid')->where('type_id',$id)->orderby('id','desc')->get();
         $paymarts = KidPayment::where('kid_id', $id)->orderby('id','desc')->get();
         $groups = GroupKid::where('kid_id', $id)->get();
-        return view('kid.show',compact('kid','notes','paymarts','groups'));
+        $davomad = KidDavomad::where('kid_id', $id)->get();
+        //dd($davomad);
+        return view('kid.show',compact('kid','notes','paymarts','groups','davomad'));
     }
     
     public function kidUpdate(UpdateKidRequest $request){

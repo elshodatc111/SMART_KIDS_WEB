@@ -22,6 +22,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/', function () { return view('index'); })->name('home'); // Bosh sahifa
     Route::post('/logout', [AuthWebController::class, 'logout'])->name('logout'); // Logindan chiqish
     Route::get('/emploes', [EmploesController::class, 'index'])->name('emploes');  // Barcha hodimlar
+    Route::get('/emploes/show/{id}', [EmploesController::class, 'show'])->name('emploes_show');  // Hodim haqida
+    Route::post('/emploes/payment/create', [EmploesController::class, 'createPayment'])->name('emploes_payment_create'); // To'lov qo'shish
+
     Route::get('/emploes/davomad', [EmploesDavomadController::class, 'showDavomad'])->name('emploes_davomad'); // Xodimlar davomadi
     Route::post('/davomad/saqlash', [EmploesDavomadController::class, 'store'])->name('davomad_store');  // Hodimlar davomadini saqlash
     Route::post('/emploes/create', [EmploesController::class, 'store'])->name('emploes_create'); // Yangi hodim qo'shish
