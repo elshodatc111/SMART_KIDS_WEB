@@ -13,7 +13,7 @@
 </li>
 
 <li class="nav-item">
-  <a class="nav-link collapsed" href="#">
+  <a class="nav-link  {{ request()->routeIs(['groups']) ? '' : 'collapsed' }}" href="{{ route('groups') }}">
     <i class="bi bi-collection"></i>
     <span>{{ __('menu.groups') }}</span>
   </a>
