@@ -59,5 +59,9 @@ class User extends Authenticatable{
     public function kids(): HasMany{
         return $this->hasMany(Kid::class, 'admin_id');
     }
+
+    public function group_users(){
+        return $this->hasMany(GroupUser::class, 'user_id');
+    }
     
 }

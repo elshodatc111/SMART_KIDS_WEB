@@ -52,6 +52,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/groups/create/eslatma', [GroupController::class, 'createNote'])->name('groups_create_note'); // Create Group Note
     Route::post('/groups/update', [GroupController::class, 'update'])->name('groups_update'); // Update Group
     Route::get('/groups/show/{id}', [GroupController::class, 'show'])->name('groups_show'); // Show Group
+    Route::post('/groups/add/tarbiyachi', [GroupController::class, 'addTarbiyachi'])->name('groups_add_tarbiyachi'); // Add Tarbiyachi to Group
+    Route::post('/groups/delete/tarbiyachi', [GroupController::class, 'deleteTarbiyachi'])->name('groups_delete_tarbiyachi'); // Delete Tarbiyachi from Group
+    Route::post('/groups/add/kid', [GroupController::class, 'addKid'])->name('groups_add_kid'); // Add Kid to Group
+    Route::post('/groups/delete/kid', [GroupController::class, 'deleteKid'])->name('groups_delete_kid'); // Delete Kid from Group
+    Route::post('/groups/delete', [GroupController::class, 'deleteGroup'])->name('groups_delete'); // Delete Group
 
 
     

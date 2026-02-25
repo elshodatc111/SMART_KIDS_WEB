@@ -38,12 +38,12 @@
                 @forelse ($groups as $group)
                   <tr>
                     <td class="text-center">{{ $loop->iteration }}</td>
-                    <td><a href="{{ route('groups_show', $group->id) }}">{{ $group->group_name }}</a></td>
-                    <td class="text-center">{{ number_format($group->group_amount, 0, '.', ' ') }} UZS</td>
-                    <td class="text-center">{{ $group->kids_count ?? 0 }}</td>
-                    <td class="text-center">{{ $group->emploes_count ?? 0 }}</td>
-                    <td class="text-center">{{ $group->manager->name }}</td>
-                    <td class="text-center">{{ $group->created_at }}</td>
+                    <td><a href="{{ route('groups_show', $group['id']) }}">{{ $group['group_name'] }}</a></td>
+                    <td class="text-center">{{ number_format($group['group_amount'], 0, '.', ' ') }} UZS</td>
+                    <td class="text-center">{{ $group['kids_count'] ?? 0 }}</td>
+                    <td class="text-center">{{ $group['emploes_count'] ?? 0 }}</td>
+                    <td class="text-center">{{ $group['manager_name'] }}</td>
+                    <td class="text-center">{{ $group['created_at'] }}</td>
                   </tr>
                 @empty
                   <tr>
