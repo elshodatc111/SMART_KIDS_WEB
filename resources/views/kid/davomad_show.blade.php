@@ -1,29 +1,29 @@
 @extends('layouts.admin')
-@section('title', 'Guruh davomadi')
+@section('title', __('kid_davomad_page.group_title'))
 @section('content')
     <div class="pagetitle">
-      <h1>Guruh davomadi</h1>
+      <h1>{{ __('kid_davomad_page.group_title') }}</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('menu.dashboard') }}</a></li>
-          <li class="breadcrumb-item"><a href="{{ route('kid_davomad_show_all_groups') }}">Guruhlar davomadi</a></li>
-          <li class="breadcrumb-item active">Guruh davomadi</li>
+          <li class="breadcrumb-item"><a href="{{ route('kid_davomad_show_all_groups') }}">{{ __('kid_davomad_page.groups_title') }}</a></li>
+          <li class="breadcrumb-item active">{{ __('kid_davomad_page.group_title') }}</li>
         </ol>
-      </nav>
+      </nav> 
     </div>
     <section class="section dashboard">
-      <div style="text-align: right"><button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#davomad_olish"><i class="bi bi-check"></i> Davomad olish</button></div>
+      <div style="text-align: right"><button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#davomad_olish"><i class="bi bi-check"></i> {{ __('kid_davomad_page.davomad_olish') }}</button></div>
       @foreach($attendanceData as $type => $monthInfo)
         <div class="card mt-3">
           <div class="card-body">
             <h5 class="card-title text-primary">
-              {{ $type == 'current' ? 'Joriy oy' : 'O\'tgan oy' }} | <span class="text-muted">{{ $monthInfo['month_name'] }}</span>
+              {{ $type == 'current' ? __('kid_davomad_page.joriy_oy') : __('kid_davomad_page.otgan_oy') }} | <span class="text-muted">{{ $monthInfo['month_name'] }}</span>
             </h5>
             <div class="table-responsive">
               <table class="table table-bordered text-center align-middle" style="font-size: 12px;">
                 <thead class="bg-light">
                   <tr>
-                    <th rowspan="2" class="align-middle" style="min-width: 150px;">F.I.O.</th>
+                    <th rowspan="2" class="align-middle" style="min-width: 150px;">FIO</th>
                     <th colspan="{{ $monthInfo['days_count'] }}">{{ Str::title($monthInfo['month_name']) }}</th>
                   </tr>
                   <tr>
@@ -70,9 +70,9 @@
       @csrf
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Davomat olish / Tahrirlash ({{ now()->format('d.m.Y') }})</h5>
+          <h5 class="modal-title">{{ __('kid_davomad_page.davomat_olish_taxrirlash') }} ({{ now()->format('d.m.Y') }})</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+        </div> 
         <div class="modal-body p-0">
           <input type="hidden" name="group_id" value="{{ $group->id }}">
           <input type="hidden" name="attendance_date" value="{{ now()->format('Y-m-d') }}">
@@ -80,8 +80,8 @@
           <table class="table table-hover mb-0">
             <thead class="bg-light">
               <tr>
-                <th class="ps-4">Bola</th>
-                <th class="text-center" style="width: 300px;">Holati</th>
+                <th class="ps-4">{{ __('kid_davomad_page.bola') }}</th>
+                <th class="text-center" style="width: 300px;">{{ __('kid_davomad_page.holati') }}</th>
               </tr>
             </thead>
             <tbody>
@@ -99,12 +99,12 @@
                       <input type="radio" class="btn-check" name="attendance[{{ $kid->id }}]" 
                              id="keldi_{{ $kid->id }}" value="keldi" autocomplete="off"
                              {{ $currentStatus == 'keldi' ? 'checked' : '' }}>
-                      <label class="btn btn-outline-success border-end-0" for="keldi_{{ $kid->id }}">Keldi</label>
+                      <label class="btn btn-outline-success border-end-0" for="keldi_{{ $kid->id }}">{{ __('kid_davomad_page.keldi') }}</label>
 
                       <input type="radio" class="btn-check" name="attendance[{{ $kid->id }}]" 
                              id="kelmadi_{{ $kid->id }}" value="kelmadi" autocomplete="off"
                              {{ $currentStatus == 'kelmadi' ? 'checked' : '' }}>
-                      <label class="btn btn-outline-danger" for="kelmadi_{{ $kid->id }}">Kelmadi</label>
+                      <label class="btn btn-outline-danger" for="kelmadi_{{ $kid->id }}">{{ __('kid_davomad_page.kelmadi') }}</label>
                     </div>
                   </td>
                 </tr>
@@ -113,8 +113,8 @@
           </table>
         </div>
         <div class="modal-footer bg-light">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
-          <button type="submit" class="btn btn-primary px-4">Saqlash</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('kid_davomad_page.cancel') }}</button>
+          <button type="submit" class="btn btn-primary px-4">{{ __('kid_davomad_page.davomad_saqlash') }}</button>
         </div>
       </div>
     </form>

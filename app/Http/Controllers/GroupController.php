@@ -12,6 +12,7 @@ use App\Models\Group;
 use App\Models\GroupKid;
 use App\Models\GroupUser;
 use App\Models\Kid;
+use App\Models\KidDavomad;
 use App\Models\Note;
 use App\Models\User;
 use Carbon\Carbon;
@@ -53,7 +54,34 @@ class GroupController extends Controller{
         $group_tarbiyachilar = GroupUser::where('group_id', $id)->get();
         $groupAddChild = Kid::where('status', 'false')->orderby('child_full_name', 'asc')->get();
         $groupKids = GroupKid::where('group_id', $id)->get();
-        return view('group.show', compact('group', 'notes', 'noactive_tarbiyachilar', 'group_tarbiyachilar', 'groupAddChild', 'groupKids')); 
+
+        
+        $kids = Kid::whereHas('groupKids', function($q) use ($id) {
+            $q->where('group_id', $id)->where('status', 'active');
+        })->get();
+        $months = [
+            'current' => now(),
+            'last' => now()->subMonth()
+        ];
+        $attendanceData = [];
+        foreach ($months as $key => $month) {
+            $daysInMonth = $month->daysInMonth;
+            $year = $month->year;
+            $monthNum = $month->month;
+            $attendances = KidDavomad::where('group_id', $id)
+                ->whereYear('attendance_date', $year)
+                ->whereMonth('attendance_date', $monthNum)
+                ->get()
+                ->groupBy(['kid_id', function ($item) {
+                    return (int)$item->attendance_date->format('d');
+                }]);
+            $attendanceData[$key] = [
+                'month_name' => $month->translatedFormat('F, Y'),
+                'days_count' => $daysInMonth,
+                'data' => $attendances
+            ];
+        }
+        return view('group.show', compact('group', 'notes', 'noactive_tarbiyachilar', 'group_tarbiyachilar', 'groupAddChild', 'groupKids', 'kids', 'attendanceData')); 
     }
 
     public function createNote(Request $request){

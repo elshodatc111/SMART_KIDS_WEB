@@ -90,32 +90,56 @@
           </div>
         </div>
         <div class="col-lg-9">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Guruhdagi davomadi</h5>
-              <div class="notes-wrapper" style="max-height: 300px; overflow-y: auto; overflow-x: hidden;">
-                <div class="table-responsive">
-                  <table class="table table-bordered" style="font-size: 12px">
-                    <thead>
-                      <tr class="text-center">
-                      <th scope="col">#</th>
-                        <th scope="col">Tarbiyachi</th>
-                        <th scope="col">Lavozimi</th>
-                        <th scope="col">Guruhga qo'shildi</th>
-                        <th scope="col">Guruhga qo'shdi</th>
-                        <th scope="col">Guruhdan o'chirildi</th>
-                        <th scope="col">Guruhdan o'chirdi</th>
-                        <th scope="col">Guruhdagi holati</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+          
+          @foreach($attendanceData as $type => $monthInfo)
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-primary">
+              {{ $type == 'current' ? __('kid_davomad_page.joriy_oy') : __('kid_davomad_page.otgan_oy') }} | <span class="text-muted">{{ $monthInfo['month_name'] }}</span>
+            </h5>
+            <div class="table-responsive">
+              <table class="table table-bordered text-center align-middle" style="font-size: 12px;">
+                <thead class="bg-light">
+                  <tr>
+                    <th rowspan="2" class="align-middle" style="min-width: 150px;">FIO</th>
+                    <th colspan="{{ $monthInfo['days_count'] }}">{{ Str::title($monthInfo['month_name']) }}</th>
+                  </tr>
+                  <tr>
+                    @for($i = 1; $i <= $monthInfo['days_count']; $i++)
+                      <th style="width: 30px; {{ \Carbon\Carbon::now()->day == $i && $type == 'current' ? 'background: #e7f1ff;' : '' }}">
+                        {{ $i }}
+                      </th>
+                    @endfor
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($kids as $kid)
+                    <tr>
+                      <td class="text-start">
+                        <strong><a href="{{ route('kid_show', $kid->id) }}">{{ $kid->child_full_name }}</a></strong>
+                      </td>
+                      @for($i = 1; $i <= $monthInfo['days_count']; $i++)
+                        @php
+                          $status = $monthInfo['data'][$kid->id][$i][0]->status ?? null;
+                        @endphp
+                        <td>
+                          @if($status == 'keldi')
+                            <span class="badge bg-success p-1"><i class="bi bi-person-check"></i></span>
+                          @elseif($status == 'kelmadi')
+                            <span class="badge bg-danger p-1"><i class="bi bi-x-lg"></i></span>
+                          @else
+                            <span class="text-muted">-</span>
+                          @endif
+                        </td>
+                      @endfor
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
             </div>
           </div>
+        </div>
+      @endforeach
           <!-- Tarbiyachilar ro'yhati -->
           <div class="card">
             <div class="card-body">

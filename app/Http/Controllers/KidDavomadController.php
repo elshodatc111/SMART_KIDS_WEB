@@ -73,6 +73,6 @@ class KidDavomadController extends Controller{
                 ]
             );
         }
-        return back()->with('success', 'Davomat yangilandi!');
+        return back()->with('success', __('kid_davomad_page.success'));
     }
 }
