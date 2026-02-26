@@ -52,17 +52,17 @@
 </li>
 
 <li class="nav-item">
-  <a class="nav-link {{ request()->routeIs(['emploes_lead','emploes_lead_show', 'child_lead']) ? '' : 'collapsed' }}" data-bs-target="#lead-nav" data-bs-toggle="collapse" href="#">
+  <a class="nav-link {{ request()->routeIs(['emploes_lead','emploes_lead_show', 'child_lead_show', 'child_lead']) ? '' : 'collapsed' }}" data-bs-target="#lead-nav" data-bs-toggle="collapse" href="#">
     <i class="bi bi-person-plus-fill"></i><span>{{ __('menu.lead') }}</span><i class="bi bi-chevron-down ms-auto"></i>
   </a>
-  <ul id="lead-nav" class="nav-content collapse {{ request()->routeIs(['emploes_lead', 'emploes_lead_show', 'child_lead']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
+  <ul id="lead-nav" class="nav-content collapse {{ request()->routeIs(['emploes_lead', 'emploes_lead_show', 'child_lead_show', 'child_lead']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
     <li>
       <a href="{{ route('emploes_lead') }}" class="nav-link {{ request()->routeIs(['emploes_lead','emploes_lead_show']) ? '' : 'collapsed' }}">
         <i class="bi bi-dot"></i><span>{{ __('menu.staff_leads') }}</span>
       </a>
     </li>
     <li>
-      <a href="{{ route('child_lead') }}" class="nav-link {{ request()->routeIs(['child_lead']) ? '' : 'collapsed' }}">
+      <a href="{{ route('child_lead') }}" class="nav-link {{ request()->routeIs(['child_lead', 'child_lead_show']) ? '' : 'collapsed' }}">
         <i class="bi bi-dot"></i><span>{{ __('menu.child_leads') }}</span>
       </a>
     </li>

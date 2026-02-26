@@ -139,7 +139,7 @@
           </div>
           <div class="mb-0">
             <label class="form-label">{{ __('bolalar.izoh') }}</label>
-            <textarea name="admin_note" class="form-control" rows="2" placeholder="Sog'lig'i yoki boshqa muhim ma'lumotlar...">{{ old('admin_note') }}</textarea>
+            <textarea name="admin_note" class="form-control" rows="2" required>{{ old('admin_note') }}</textarea>
           </div>
         </div>
         <div class="modal-footer">

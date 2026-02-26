@@ -15,7 +15,6 @@ use App\Models\MoliyaHistory;
 use App\Models\Note;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class KidController extends Controller{ 
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Kid;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreKidRequest extends FormRequest{
+class StoreKidRequest2 extends FormRequest{
     public function authorize(): bool{
         return true;
     }
@@ -24,6 +24,7 @@ class StoreKidRequest extends FormRequest{
     }
     public function rules(): array{
         return [
+            'id' => ['required'],
             'child_full_name'    => ['required', 'string', 'max:255'],
             'certificate_serial' => ['required', 'string', 'unique:kids,certificate_serial'],
             'tkun'               => ['required', 'date'],

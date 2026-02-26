@@ -37,9 +37,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/lead/emploes/create/eslatma', [LeadEmploesController::class, 'createEslatmaLeadWebEmploes'])->name('emploes_eslatma_lead_create'); // Yangi eslatma xodim lead qo'shish
     Route::post('/lead/emploes/cancel', [LeadEmploesController::class, 'emploesLeadCancel'])->name('emploes_lead_cancel'); // Arizani bekor qilish
     Route::post('/lead/emploes/success', [LeadEmploesController::class, 'emploesLeadSuccess'])->name('emploes_lead_success'); // Arizani ishga olish
-
     Route::get('/child/leads', [LeadKidController::class, 'allLead'])->name('child_lead'); // Barcha Child Lead
     Route::post('/lead/child/create', [LeadKidController::class, 'createWeb'])->name('child_lead_create'); // Yangi child create lead
+    Route::get('/child/leads/show/{id}', [LeadKidController::class, 'show'])->name('child_lead_show'); // Child Lead About
+    Route::post('/lead/child/create/note', [LeadKidController::class, 'createEslatmaLeadWebKid'])->name('child_lead_create_note'); // Yangi eslatma
+    Route::post('/lead/child/cancel', [LeadKidController::class, 'cancel'])->name('child_lead_cancel'); // Yangi eslatma
+    Route::post('/lead/child/success', [LeadKidController::class, 'store'])->name('child_lead_success'); // Yangi eslatma
+
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');  // Profile Page
     Route::post('/profile/password/update', [ProfileController::class, 'update'])->name('profile_password_update'); // Passport Update Post
     Route::get('/kassa', [KassaController::class, 'kassa'])->name('kassa'); // Kassa Page

@@ -39,7 +39,7 @@
                   @forelse ($leads as $lead)
                     <tr>
                       <td class="text-center">{{ $loop->iteration }}</td>
-                      <td><a href="#">{{ $lead->child_full_name }}</a></td>
+                      <td><a href="{{ route('child_lead_show', $lead->id ) }}">{{ $lead->child_full_name }}</a></td>
                       <td>{{ $lead->address }}</td>
                       <td class="text-center">{{ $lead->tkun }}</td>
                       <td class="text-center">
@@ -151,8 +151,8 @@
               </div>
             </div>
             <div class="mb-1">
-              <label for="lovozim" class="form-label">{{ __('lead_emploes_page.qoshimcha_izoh') }}</label>
-              <input type="text" class="form-control" id="lovozim" name="lovozim" value="{{ old('lovozim') }}" required>
+              <label for="admin_note" class="form-label">{{ __('lead_emploes_page.qoshimcha_izoh') }}</label>
+              <input type="text" class="form-control" id="admin_note" name="admin_note" value="{{ old('admin_note') }}" required>
             </div>
           </div>
           <div class="modal-footer">

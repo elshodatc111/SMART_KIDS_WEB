@@ -32,7 +32,7 @@ class StoreChildEmployeeRequest extends FormRequest{
             'address'              => ['required', 'string', 'max:500'],
             'tkun'                 => ['required', 'date', 'before:today'],
             'source'               => ['required', 'string'],
-            'lovozim'              => ['required', 'string', 'max:255'],
+            'admin_note'              => ['required', 'string', 'max:255'],
             'certificate_serial'   => [
                 'required', 
                 'string', 
@@ -45,17 +45,17 @@ class StoreChildEmployeeRequest extends FormRequest{
 
     public function messages(): array{
         return [
-            'child_full_name.required'    => 'FIO. maydonini toʻldirish shart.',
-            'certificate_serial.unique'   => 'Ushbu seriya va raqamli guvohnoma allaqachon roʻyxatga olingan.',
-            'certificate_serial_01.required' => 'Guvohnoma seriyasi kerak.',
-            'certificate_serial_02.required' => 'Guvohnoma raqami kerak.',
-            'gender.required'             => 'Jinsini tanlang.',
-            'phone1.required'             => 'Telefon raqami kiritilishi shart.',
-            'phone2.required'             => 'Qoʻshimcha telefon raqami kiritilishi shart.',
-            'tkun.required'               => 'Tugʻilgan kunni kiriting.',
-            'tkun.before'                 => 'Tugʻilgan kun kelajakda boʻlishi mumkin emas.',
-            'source.required'             => 'Biz haqimizda qayerdan eshitganingizni tanlang.',
-            'address.required'            => 'Manzilni kiriting.',
+            'child_full_name.required'    => __('lead_kid_page.child_full_name_required'),
+            'certificate_serial.unique'   => __('lead_kid_page.certificate_serial_unique'),
+            'certificate_serial_01.required' => __('lead_kid_page.certificate_serial_01_required'),
+            'certificate_serial_02.required' => __('lead_kid_page.certificate_serial_02_required'),
+            'gender.required'             => __('lead_kid_page.gender_required'),
+            'phone1.required'             => __('lead_kid_page.phone1_required'),
+            'phone2.required'             => __('lead_kid_page.phone2_required'),
+            'tkun.required'               => __('lead_kid_page.tkun_required'),
+            'tkun.before'                 => __('lead_kid_page.tkun_before'),
+            'source.required'             => __('lead_kid_page.source_required'),
+            'address.required'            => __('lead_kid_page.address_required'),
         ];
     }
     

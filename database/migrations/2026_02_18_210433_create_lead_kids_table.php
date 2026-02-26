@@ -18,7 +18,7 @@ return new class extends Migration{
             $table->string('phone2', 20)->nullable(); // Qo'shimcha raqam
             $table->string('address');           
             // Marketing va Boshqaruv
-            $table->enum('status', ['new', 'visited', 'waiting_list', 'enrolled', 'canceled'])->default('new');
+            $table->enum('status', ['new','pending','success','canceled'])->default('new');
             $table->enum('source', ['instagram', 'telegram', 'friend', 'other'])->nullable();
             $table->text('admin_note')->nullable();
             $table->timestamps();
