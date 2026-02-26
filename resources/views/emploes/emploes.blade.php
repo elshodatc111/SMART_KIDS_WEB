@@ -46,7 +46,7 @@
                           @elseif($user->type=='admin')
                             {{ __('emploes_page.lavozim_admin') }}
                           @elseif($user->type=='katta_tarbiyachi')
-                            {{ __('emploes_page.katta_tarbiyachi') }}
+                            {{ __('emploes_page.lavozim_tarbiyachi') }}
                           @elseif($user->type=='kichik_tarbiyachi')
                             {{ __('emploes_page.lavozim_yordamch_tarbiyachi') }}
                           @elseif($user->type=='teacher')

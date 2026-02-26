@@ -24,6 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/emploes', [EmploesController::class, 'index'])->name('emploes');  // Barcha hodimlar
     Route::get('/emploes/show/{id}', [EmploesController::class, 'show'])->name('emploes_show');  // Hodim haqida
     Route::post('/emploes/payment/create', [EmploesController::class, 'createPayment'])->name('emploes_payment_create'); // To'lov qo'shish
+    Route::post('/emploes/eslatma/create', [EmploesController::class, 'createEslatma'])->name('emploes_eslatma_create'); // yangi eslatma
+    Route::post('/emploes/update', [EmploesController::class, 'updateEmploes'])->name('emploes_update'); // Yangilash
+    Route::post('/emploes/password/update', [EmploesController::class, 'updatePassword'])->name('emploes_password_update'); // Parolni yangilash
+    Route::post('/emploes/delete', [EmploesController::class, 'emploesDelete'])->name('emploes_delete'); // Parolni yangilash
 
     Route::get('/emploes/davomad', [EmploesDavomadController::class, 'showDavomad'])->name('emploes_davomad'); // Xodimlar davomadi
     Route::post('/davomad/saqlash', [EmploesDavomadController::class, 'store'])->name('davomad_store');  // Hodimlar davomadini saqlash
