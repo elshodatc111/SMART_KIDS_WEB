@@ -41,7 +41,7 @@
                   @forelse ($leads as $lead)
                       <tr>
                           <td class="text-center">{{ $loop->iteration }}</td>
-                          <td><a href="#">{{ $lead['full_name'] }}</a></td>
+                          <td><a href="{{ route('emploes_lead_show',$lead['id']) }}">{{ $lead['full_name'] }}</a></td>
                           <td>{{ $lead['address'] }}</td>
                           <td class="text-center">{{ \Carbon\Carbon::parse($lead->date_of_birth)->age }} {{ __('lead_emploes_page.yosh') }}</td>
                           <td class="text-center">

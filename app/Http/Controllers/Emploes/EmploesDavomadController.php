@@ -13,7 +13,7 @@ class EmploesDavomadController extends Controller{
     public function showDavomad(){
         $currentMonth = Carbon::now();
         $prevMonth = Carbon::now()->subMonth();
-        $users = User::where('type','!=','drektor')->with(['attendances' => function($query) use ($currentMonth, $prevMonth) {
+        $users = User::where('type','!=','drektor')->where('status','!=','delete')->with(['attendances' => function($query) use ($currentMonth, $prevMonth) {
             $query->whereBetween('attendance_date', [
                 $prevMonth->startOfMonth()->toDateString(), 
                 $currentMonth->endOfMonth()->toDateString()

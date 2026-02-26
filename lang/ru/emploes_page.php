@@ -76,6 +76,12 @@ return [
     'taxrirlash' => "Редактирование",
     'parolni_yangilash' => "Обновить пароль",
     'hodimni_ochirish' => "Удалить сотрудника",
+    'xodim_malumotlari_yangilandi' => 'Данные сотрудника успешно обновлены!',
+    'hodim_parli_yangilash' => 'Пароль сотрудника будет изменён на "password"',
+    'parol_yangilandi_success' => 'Пароль сотрудника был изменён на "password".',
+    'xodimni_ochirish' => 'Удалить сотрудника',
+    'xodim_ochirish_izoh' => 'При удалении сотрудника все его данные будут удалены. Восстановление будет невозможно.',
+    'xodim_ochirildi' => 'Сотрудник удалён',
 
 
 ];

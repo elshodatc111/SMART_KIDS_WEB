@@ -28,12 +28,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/emploes/update', [EmploesController::class, 'updateEmploes'])->name('emploes_update'); // Yangilash
     Route::post('/emploes/password/update', [EmploesController::class, 'updatePassword'])->name('emploes_password_update'); // Parolni yangilash
     Route::post('/emploes/delete', [EmploesController::class, 'emploesDelete'])->name('emploes_delete'); // Parolni yangilash
-
     Route::get('/emploes/davomad', [EmploesDavomadController::class, 'showDavomad'])->name('emploes_davomad'); // Xodimlar davomadi
     Route::post('/davomad/saqlash', [EmploesDavomadController::class, 'store'])->name('davomad_store');  // Hodimlar davomadini saqlash
     Route::post('/emploes/create', [EmploesController::class, 'store'])->name('emploes_create'); // Yangi hodim qo'shish
     Route::get('/emploes/leads', [LeadEmploesController::class, 'allLead'])->name('emploes_lead'); // Lead barcha Hodim leadlari
     Route::post('/lead/emploes/create', [LeadEmploesController::class, 'createLeadWebEmploes'])->name('emploes_lead_create'); // Yangi xodim lead qo'shish
+    Route::get('/emploes/lead/{id}', [LeadEmploesController::class, 'show'])->name('emploes_lead_show'); // Lead barcha Hodim leadlari
+    Route::post('/lead/emploes/create/eslatma', [LeadEmploesController::class, 'createEslatmaLeadWebEmploes'])->name('emploes_eslatma_lead_create'); // Yangi eslatma xodim lead qo'shish
+    Route::post('/lead/emploes/cancel', [LeadEmploesController::class, 'emploesLeadCancel'])->name('emploes_lead_cancel'); // Arizani bekor qilish
+    Route::post('/lead/emploes/success', [LeadEmploesController::class, 'emploesLeadSuccess'])->name('emploes_lead_success'); // Arizani ishga olish
+
     Route::get('/child/leads', [LeadKidController::class, 'allLead'])->name('child_lead'); // Barcha Child Lead
     Route::post('/lead/child/create', [LeadKidController::class, 'createWeb'])->name('child_lead_create'); // Yangi child create lead
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');  // Profile Page

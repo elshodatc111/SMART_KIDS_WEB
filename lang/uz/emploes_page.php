@@ -76,12 +76,11 @@ return [
     'taxrirlash' => "Tahrirlash",
     'parolni_yangilash' => "Parolni yangilash",
     'hodimni_ochirish' => "Xodimni o‘chirish",
-    //
     'xodim_malumotlari_yangilandi' => "Xodim ma’lumotlari muvaffaqiyatli yangilandi!",
-    'hodim_parli_yangilash'=>'Hodim paroli "password" ga yangilanadi',
-    'parol_yangilandi_success' => "Xodim paroli password ga yangilandi.",
-    'xodimni_ochirish' => "Xodimni o'chirish",
-    'xodim_ochirish_izoh' => "Xodimni ochirganda hodimning barcha malumotlari o'chiriladi. Qayta tiklash imkoni bo'lmaydi.",
-    'xodim_ochirildi' => "Hodim o'chirildi",
+    'hodim_parli_yangilash' => 'Xodim paroli "password" ga yangilanadi',
+    'parol_yangilandi_success' => 'Xodim paroli "password" ga yangilandi.',
+    'xodimni_ochirish' => 'Xodimni o‘chirish',
+    'xodim_ochirish_izoh' => 'Xodimni o‘chirganda xodimning barcha ma’lumotlari o‘chiriladi. Qayta tiklash imkoni bo‘lmaydi.',
+    'xodim_ochirildi' => 'Xodim o‘chirildi',
     
 ];
