@@ -35,19 +35,19 @@ class SuccessStoreEmployeeLeadRequest extends FormRequest{
 
     public function messages(): array{
         return [
-            'name.required' => 'Xodimning FIO kiratilishi shart.',
-            'name.min' => 'Ism juda qisqa, kamida 3 ta belgi bo\'lishi kerak.',
-            'phone1.unique' => 'Ushbu telefon raqami bilan xodim allaqachon ro\'yxatdan o\'tgan.',
-            'phone1.required' => 'Telefon raqami kiritilishi shart.',
-            'phone_two.required' => 'Qo\'shimcha telefon raqami kiritilishi shart.',
-            'amount.required' => 'Maosh miqdori kiritilishi shart.',
-            'amount.numeric' => 'Maosh faqat raqamlardan iborat bo\'lishi kerak.',
-            'birthday.required' => 'Tug\'ilgan sana tanlanishi shart.',
-            'birthday.before' => 'Tug\'ilgan sana bugungi kundan oldin bo\'lishi kerak.',
-            'passport_number.required' => 'Pasport ma\'lumotlari shart.',
-            'type.required' => 'Lavozimni tanlang.',
-            'type.in' => 'Tanlangan lavozim tizimda mavjud emas.',
-            'type_about.required' => 'Lavozim haqida qisqacha ma\'lumot yozing.',
+            'name.required' => __('lead_emploes_page.name_required'),
+            'name.min' => __('lead_emploes_page.name_min'),
+            'phone1.unique' => __('lead_emploes_page.phone1_unique'),
+            'phone1.required' => __('lead_emploes_page.phone1_required'),
+            'phone_two.required' => __('lead_emploes_page.phone_two_required'),
+            'amount.required' => __('lead_emploes_page.amount_required'),
+            'amount.numeric' => __('lead_emploes_page.amount_numeric'),
+            'birthday.required' => __('lead_emploes_page.birthday_required'),
+            'birthday.before' => __('lead_emploes_page.birthday_before'),
+            'passport_number.required' => __('lead_emploes_page.passport_number_required'),
+            'type.required' => __('lead_emploes_page.type_required'),
+            'type.in' => __('lead_emploes_page.type_in'),
+            'type_about.required' => __('lead_emploes_page.type_about_required'),
         ];
     }
 }

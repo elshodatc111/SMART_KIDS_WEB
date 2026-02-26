@@ -19,7 +19,7 @@ class LeadEmploesController extends Controller{
         $data = $request->validated();    
         $lead = LeadEmployee::create($data);
         return response()->json([
-            'message' => 'Arizangiz muvaffaqiyatli qabul qilindi!',
+            'message' => __('emploes_davomad_page.ariza_mofaqiyatli_saqlandi'),
             'data' => $lead
         ], 200);
     }
@@ -32,7 +32,7 @@ class LeadEmploesController extends Controller{
     public function createLeadWebEmploes(StoreWebEmploesRequest $request){
         $data = $request->validated();    
         LeadEmployee::create($data);
-        return redirect()->back()->with('success', 'Yangi Lead saqlandi!');
+        return redirect()->back()->with('success', __('emploes_davomad_page.yangi_ariza_saqlandi'));
     }
 
     public function show($id){
@@ -67,7 +67,7 @@ class LeadEmploesController extends Controller{
         $user = LeadEmployee::findOrFail($request->id);
         $user->status = 'canceled';
         $user->save();
-        return redirect()->back()->with('success',"Ariza bekor qilindi");
+        return redirect()->back()->with('success',__('emploes_davomad_page.ariza_bekor_qilindi'));
     }
 
     public function emploesLeadSuccess(SuccessStoreEmployeeLeadRequest $request) {
@@ -92,7 +92,7 @@ class LeadEmploesController extends Controller{
                 $lead->save();
                 return $newUser;
             });
-            return redirect()->route('emploes_show', $user->id)->with('success', 'Xodim muvaffaqiyatli ishga olindi!');
+            return redirect()->route('emploes_show', $user->id)->with('success', __('emploes_page.xodim_mofaqiyatli_ishga_olindi'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Xatolik yuz berdi: ' . $e->getMessage());
         }
