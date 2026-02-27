@@ -23,6 +23,9 @@ return [
     'barcha_hodimlar_ish_haqi_tolovlari' => "Barcha xodimlar ish haqi to‘lovlari",
     'barcha_balans_tarixi' => "Barcha balans tarixi",
     'yuklash' => "Yuklash",
+    'tulovlar' => "To‘lovlar",
+    'davomad' => "Davomat",
+
 
 
 ];

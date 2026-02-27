@@ -15,6 +15,7 @@ use App\Http\Controllers\{
         MoliyaController,
         ProfileController,
     ReportController,
+    ChartController,
 };
 
 Route::get('lang/{locale}', function ($locale) {if (in_array($locale, ['uz', 'ru'])) {session()->put('locale', $locale);}return redirect()->back();})->name('changeLang');
@@ -87,6 +88,10 @@ Route::middleware('auth')->group(function () {
     Route::get('report/hodimlar', [ReportController::class, 'barchaHodimlar'])->name('report_barcha_hodimlar');
     Route::get('report/hodim/ish/haqi', [ReportController::class, 'barchaHodimIshHaqlari'])->name('report_hodim_ish_haqi');
     Route::get('report/moliya', [ReportController::class, 'moliyaTarixi'])->name('report_moliya');
+    // Chart
+    Route::get('chart/paymart', [ChartController::class, 'tulovlar'])->name('chart_paymart');
+    Route::get('chart/davomad', [ChartController::class, 'davomad'])->name('chart_davomad');
+    Route::get('chart/chart', [ChartController::class, 'chart'])->name('chart_chart');
 
     
 });

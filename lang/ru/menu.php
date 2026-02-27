@@ -23,4 +23,6 @@ return [
     'barcha_hodimlar_ish_haqi_tolovlari' => "Все выплаты заработной платы сотрудникам",
     'barcha_balans_tarixi' => "Вся история баланса",
     'yuklash' => "Скачать",
+    'tulovlar' => "Платежи",
+    'davomad' => "Посещаемость",
 ];
