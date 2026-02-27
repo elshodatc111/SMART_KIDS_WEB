@@ -19,7 +19,7 @@
           </div>
           <div class="col-6" style="text-align: right">
             <button onclick="exportTableToExcel()" class="btn btn-outline-success mt-2">
-                <i class="bi bi-file-earmark-spreadsheet"></i> Yuklash
+                <i class="bi bi-file-earmark-spreadsheet"></i> {{ __('menu.yuklash') }}
             </button>
           </div>
         </div>
@@ -29,25 +29,32 @@
               <thead class="text-center">
                 <tr>
                   <th>#</th>
-                  <th>FIO</th>
-                  <th>Telefon raqam</th>
-                  <th>Qo'shimcha telefon raqam</th>
-                  <th>Yashash manzili</th>
-                  <th>Tugilgan kuni</th>
-                  <th>Malumoti</th>
-                  <th>O'qish joyi</th>
-                  <th>Oldingi ish joyi</th>
-                  <th>Ishlashdan maqsad</th>
-                  <th>Kutayotgan ish haqi</th>
-                  <th>Lovozimga nomzod</th>
-                  <th>Status</th>
-                  <th>Biz haqimizda</th>
-                  <th>Admin hodim haqida fikri</th>
-                  <th>Oxirgi yangilanish</th>
-                  <th>Ariza vaqti</th>
+                  <th>user_id</th>
+                  <th>amount</th>
+                  <th>payment_method</th>
+                  <th>description</th>
+                  <th>admin_id</th>
+                  <th>created_at</th>
+                  <th>updated_at</th>
                 </tr>
               </thead>
               <tbody>
+                @forelse($leads as $item)
+                  <tr>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td>{{ $item->user->name }}</td>
+                    <td>{{ $item->amount }}</td>
+                    <td>{{ $item->payment_method }}</td>
+                    <td>{{ $item->description }}</td>
+                    <td>{{ $item->admin->name }}</td>
+                    <td>{{ $item->created_at }}</td>
+                    <td>{{ $item->updated_at }}</td>
+                  </tr>
+                @empty
+                  <tr>
+                    <td>Malumotlar mavjud emas.</td>
+                  </tr>
+                @endforelse
                 
               </tbody>
             </table>

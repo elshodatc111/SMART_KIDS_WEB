@@ -19,7 +19,7 @@
           </div>
           <div class="col-6" style="text-align: right">
             <button onclick="exportTableToExcel()" class="btn btn-outline-success mt-2">
-                <i class="bi bi-file-earmark-spreadsheet"></i> Yuklash
+                <i class="bi bi-file-earmark-spreadsheet"></i> {{ __('menu.yuklash') }}
             </button>
           </div>
         </div>

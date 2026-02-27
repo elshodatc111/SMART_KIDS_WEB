@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
+use App\Models\Kid;
+use App\Models\KidPayment;
 use App\Models\LeadEmployee;
 use App\Models\LeadKid;
-use Illuminate\Http\Request;
+use App\Models\MoliyaHistory;
+use App\Models\User;
+use App\Models\UserPaymart;
 
 class ReportController extends Controller{
     public function hodimVakansiyalari(){
@@ -16,21 +21,27 @@ class ReportController extends Controller{
         return view('report.bolalar_arizalari',compact('leads'));
     }
     public function barchaGuruhlar(){
-        return view('report.barcha_guruhlar');
+        $leads = Group::get();
+        return view('report.barcha_guruhlar', compact('leads'));
     }
     public function barchaBolalar(){
-        return view('report.barcha_bolalar');
+        $leads = Kid::get();
+        return view('report.barcha_bolalar', compact('leads'));
     }
     public function barchaNolalarTolovlari(){
-        return view('report.bolalar_tolovlari');
+        $leads = KidPayment::get();
+        return view('report.bolalar_tolovlari',compact('leads'));
     }
     public function barchaHodimlar(){
-        return view('report.barcha_hodimlar');
+        $leads = User::get();
+        return view('report.barcha_hodimlar',compact('leads'));
     }
     public function barchaHodimIshHaqlari(){
-        return view('report.hodimlar_ish_haqlari');
+        $leads = UserPaymart::get();
+        return view('report.hodimlar_ish_haqlari',compact('leads'));
     }
     public function moliyaTarixi(){
-        return view('report.balans_tarixi');
+        $leads = MoliyaHistory::get();
+        return view('report.balans_tarixi',compact('leads'));
     }
 }

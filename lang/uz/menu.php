@@ -13,7 +13,6 @@ return [
     'child_leads' => 'Qabulga arizalar',
     'finance' => 'Moliya',
     'statistics' => 'Statistika',
-
     'hisobot' => "Hisobot",
     'barcha_hodim_vakansiya_arizalari' => "Barcha xodim vakansiya arizalari",
     'barcha_bolalar_qabul_arizalari' => "Barcha bolalar qabul arizalari",
@@ -23,7 +22,7 @@ return [
     'barcha_hodimlar' => "Barcha xodimlar",
     'barcha_hodimlar_ish_haqi_tolovlari' => "Barcha xodimlar ish haqi to‘lovlari",
     'barcha_balans_tarixi' => "Barcha balans tarixi",
-
+    'yuklash' => "Yuklash",
 
 
 ];

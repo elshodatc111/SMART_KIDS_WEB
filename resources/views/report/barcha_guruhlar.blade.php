@@ -19,7 +19,7 @@
           </div>
           <div class="col-6" style="text-align: right">
             <button onclick="exportTableToExcel()" class="btn btn-outline-success mt-2">
-                <i class="bi bi-file-earmark-spreadsheet"></i> Yuklash
+                <i class="bi bi-file-earmark-spreadsheet"></i> {{ __('menu.yuklash') }}
             </button>
           </div>
         </div>
@@ -29,26 +29,32 @@
               <thead class="text-center">
                 <tr>
                   <th>#</th>
-                  <th>FIO</th>
-                  <th>Telefon raqam</th>
-                  <th>Qo'shimcha telefon raqam</th>
-                  <th>Yashash manzili</th>
-                  <th>Tugilgan kuni</th>
-                  <th>Malumoti</th>
-                  <th>O'qish joyi</th>
-                  <th>Oldingi ish joyi</th>
-                  <th>Ishlashdan maqsad</th>
-                  <th>Kutayotgan ish haqi</th>
-                  <th>Lovozimga nomzod</th>
-                  <th>Status</th>
-                  <th>Biz haqimizda</th>
-                  <th>Admin hodim haqida fikri</th>
-                  <th>Oxirgi yangilanish</th>
-                  <th>Ariza vaqti</th>
+                  <th>group_name</th>
+                  <th>group_amount</th>
+                  <th>description</th>
+                  <th>meneger_id</th>
+                  <th>status</th>
+                  <th>created_at</th>
+                  <th>updated_at</th>
                 </tr>
               </thead>
               <tbody>
-                
+                 @forelse($leads as $item)
+                  <tr>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td>{{ $item->group_name }}</td>
+                    <td>{{ $item->group_amount }}</td>
+                    <td>{{ $item->description }}</td>
+                    <td>{{ $item->manager->name }}</td>
+                    <td>{{ $item->status }}</td>
+                    <td>{{ $item->created_at }}</td>
+                    <td>{{ $item->updated_at }}</td>
+                  </tr>
+                  @empty
+                    <tr>
+                      <td>Malumotlar mavjud emas.</td>
+                    </tr>
+                  @endforelse
               </tbody>
             </table>
           </div>

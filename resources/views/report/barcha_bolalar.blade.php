@@ -19,7 +19,7 @@
           </div>
           <div class="col-6" style="text-align: right">
             <button onclick="exportTableToExcel()" class="btn btn-outline-success mt-2">
-                <i class="bi bi-file-earmark-spreadsheet"></i> Yuklash
+                <i class="bi bi-file-earmark-spreadsheet"></i> {{ __('menu.yuklash') }}
             </button>
           </div>
         </div>
@@ -29,26 +29,47 @@
               <thead class="text-center">
                 <tr>
                   <th>#</th>
-                  <th>FIO</th>
-                  <th>Telefon raqam</th>
-                  <th>Qo'shimcha telefon raqam</th>
-                  <th>Yashash manzili</th>
-                  <th>Tugilgan kuni</th>
-                  <th>Malumoti</th>
-                  <th>O'qish joyi</th>
-                  <th>Oldingi ish joyi</th>
-                  <th>Ishlashdan maqsad</th>
-                  <th>Kutayotgan ish haqi</th>
-                  <th>Lovozimga nomzod</th>
-                  <th>Status</th>
-                  <th>Biz haqimizda</th>
-                  <th>Admin hodim haqida fikri</th>
-                  <th>Oxirgi yangilanish</th>
-                  <th>Ariza vaqti</th>
+                  <th>child_full_name</th>
+                  <th>certificate_serial</th>
+                  <th>tkun</th>
+                  <th>gender</th>
+                  <th>parent_full_name</th>
+                  <th>phone1</th>
+                  <th>phone2</th>
+                  <th>address</th>
+                  <th>amount</th>
+                  <th>status</th>
+                  <th>payment_month</th>
+                  <th>admin_note</th>
+                  <th>admin_id</th>
+                  <th>created_at</th>
+                  <th>updated_at</th>
                 </tr>
               </thead>
               <tbody>
-                
+                @forelse($leads as $item)
+                  <tr>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td> {{ $item->child_full_name }} </td>
+                    <td> {{ $item->certificate_serial }} </td>
+                    <td> {{ $item->tkun }} </td>
+                    <td> {{ $item->gender }} </td>
+                    <td> {{ $item->parent_full_name }} </td>
+                    <td> {{ $item->phone1 }} </td>
+                    <td> {{ $item->phone2 }} </td>
+                    <td> {{ $item->address }} </td>
+                    <td> {{ $item->amount }} </td>
+                    <td> {{ $item->status }} </td>
+                    <td> {{ $item->payment_month }} </td>
+                    <td> {{ $item->admin_note }} </td>
+                    <td> {{ $item->admin_id }} </td>
+                    <td> {{ $item->created_at }} </td>
+                    <td> {{ $item->updated_at }} </td>
+                  @empty
+                    <tr>
+                      <td>Malumotlar mavjud emas.</td>
+                    </tr>
+                  @endforelse
               </tbody>
             </table>
           </div>
