@@ -88,9 +88,10 @@ Route::middleware('auth')->group(function () {
     Route::get('report/hodimlar', [ReportController::class, 'barchaHodimlar'])->name('report_barcha_hodimlar');
     Route::get('report/hodim/ish/haqi', [ReportController::class, 'barchaHodimIshHaqlari'])->name('report_hodim_ish_haqi');
     Route::get('report/moliya', [ReportController::class, 'moliyaTarixi'])->name('report_moliya');
-    // Chart
+    // Chart 
     Route::get('chart/paymart', [ChartController::class, 'tulovlar'])->name('chart_paymart');
-    Route::get('chart/davomad', [ChartController::class, 'davomad'])->name('chart_davomad');
+    Route::get('chart/aktive', [ChartController::class, 'aktive'])->name('chart_aktive');
+    Route::get('chart/varonka', [ChartController::class, 'varonka'])->name('chart_varonka');
     Route::get('chart/chart', [ChartController::class, 'chart'])->name('chart_chart');
 
     

@@ -125,18 +125,23 @@
 </li>
 
 <li class="nav-item">
-  <a class="nav-link {{ request()->routeIs(['chart_paymart','chart_davomad', 'chart_chart']) ? '' : 'collapsed' }}" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+  <a class="nav-link {{ request()->routeIs(['chart_paymart','chart_aktive', 'chart_chart', 'chart_varonka']) ? '' : 'collapsed' }}" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
     <i class="bi bi-graph-up-arrow"></i><span>{{ __('menu.statistics') }}</span><i class="bi bi-chevron-down ms-auto"></i>
   </a>
-  <ul id="charts-nav" class="nav-content collapse {{ request()->routeIs(['chart_paymart','chart_davomad', 'chart_chart']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
+  <ul id="charts-nav" class="nav-content collapse {{ request()->routeIs(['chart_paymart','chart_aktive', 'chart_chart', 'chart_varonka']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
     <li>
       <a href="{{ route('chart_paymart') }}" class="nav-link {{ request()->routeIs(['chart_paymart']) ? '' : 'collapsed' }}">
         <i class="bi bi-dot"></i><span>{{ __('menu.tulovlar') }}</span>
       </a>
     </li>
     <li>
-      <a href="{{ route('chart_davomad') }}" class="nav-link {{ request()->routeIs(['chart_davomad']) ? '' : 'collapsed' }}">
-        <i class="bi bi-dot"></i><span>{{ __('menu.davomad') }}</span>
+      <a href="{{ route('chart_aktive') }}" class="nav-link {{ request()->routeIs(['chart_aktive']) ? '' : 'collapsed' }}">
+        <i class="bi bi-dot"></i><span>{{ __('menu.aktiv_bolalar') }}</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('chart_varonka') }}" class="nav-link {{ request()->routeIs(['chart_varonka']) ? '' : 'collapsed' }}">
+        <i class="bi bi-dot"></i><span>{{ __('menu.varonka') }}</span>
       </a>
     </li>
     <li>

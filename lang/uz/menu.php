@@ -24,7 +24,8 @@ return [
     'barcha_balans_tarixi' => "Barcha balans tarixi",
     'yuklash' => "Yuklash",
     'tulovlar' => "To‘lovlar",
-    'davomad' => "Davomat",
+    'aktiv_bolalar' => "Aktiv bolalar",
+    'varonka' => "Varonka",
 
 
 

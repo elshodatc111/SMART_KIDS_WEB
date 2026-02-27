@@ -25,4 +25,6 @@ return [
     'yuklash' => "Скачать",
     'tulovlar' => "Платежи",
     'davomad' => "Посещаемость",
+    'aktiv_bolalar' => "Активные дети",
+    'varonka' => "Воронка",
 ];

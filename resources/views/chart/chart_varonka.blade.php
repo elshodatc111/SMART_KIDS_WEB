@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title', __('menu.davomad'))
+@section('title', __('menu.varonka'))
 @section('content')
   <div class="pagetitle">
-    <h1>{{ __('menu.davomad') }}</h1>
+    <h1>{{ __('menu.varonka') }}</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('menu.dashboard') }}</a></li>
-        <li class="breadcrumb-item active">{{ __('menu.davomad') }}</li>
+        <li class="breadcrumb-item active">{{ __('menu.varonka') }}</li>
       </ol>
     </nav>
   </div><section class="section dashboard">
