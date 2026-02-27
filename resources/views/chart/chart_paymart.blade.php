@@ -9,7 +9,8 @@
         <li class="breadcrumb-item active">{{ __('menu.tulovlar') }}</li>
       </ol>
     </nav>
-  </div><section class="section dashboard">
+  </div>
+  <section class="section dashboard">
     <div class="row">
       <div class="col-lg-6">
         <div class="card">

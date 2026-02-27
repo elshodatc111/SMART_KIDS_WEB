@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\KidPayment;
+use App\Models\LeadEmployee;
+use App\Models\LeadKid;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -92,9 +94,24 @@ class ChartController extends Controller{
     }
 
     public function varonka(){
-        
-        return view('chart.chart_varonka');
+        $getStats = function($model, $startDate) {
+            $stats = $model::where('created_at', '>=', $startDate)
+                ->select('status', DB::raw('count(*) as total'))
+                ->groupBy('status')->pluck('total', 'status')->toArray();
+            return [
+                $stats['new'] ?? 0,
+                $stats['pending'] ?? 0,
+                $stats['success'] ?? 0,
+                $stats['canceled'] ?? 0
+            ];
+        };
+        $empMonth = $getStats(LeadEmployee::class, now()->startOfMonth());
+        $empYear = $getStats(LeadEmployee::class, now()->startOfYear());
+        $kidMonth = $getStats(LeadKid::class, now()->startOfMonth());
+        $kidYear = $getStats(LeadKid::class, now()->startOfYear());
+        return view('chart.chart_varonka', compact('empMonth', 'empYear', 'kidMonth', 'kidYear'));
     }
+    
     public function chart(){
         return view('chart.chart');
     }
