@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\KidPayment;
 use App\Models\LeadEmployee;
 use App\Models\LeadKid;
+use App\Models\MoliyaHistory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -111,8 +112,29 @@ class ChartController extends Controller{
         $kidYear = $getStats(LeadKid::class, now()->startOfYear());
         return view('chart.chart_varonka', compact('empMonth', 'empYear', 'kidMonth', 'kidYear'));
     }
-    
+
     public function chart(){
-        return view('chart.chart');
+        $months = [];
+        $paymentsData = [];
+        $salaryData = [];
+        $expenseData = [];
+        $profitData = [];
+        for ($i = 5; $i >= 0; $i--) {
+            $date = Carbon::now()->subMonths($i);
+            $monthName = $date->format('F');
+            $months[] = $monthName;
+            $totalPayments = KidPayment::whereYear('created_at', $date->year)->whereMonth('created_at', $date->month)->where('payment_status', 'success')->where('payment_type', 'payment')->sum('amount');
+            $totalReturns = KidPayment::whereYear('created_at', $date->year)->whereMonth('created_at', $date->month)->where('payment_status', 'success')->where('payment_type', 'return')->sum('amount');
+            $finalPayments = $totalPayments - $totalReturns;
+            $totalSalary = MoliyaHistory::whereYear('start_date', $date->year)->whereMonth('start_date', $date->month)->where('status', 'success')->where('type', 'ish_haqi')->sum('amount');
+            $totalExpense = MoliyaHistory::whereYear('start_date', $date->year)->whereMonth('start_date', $date->month)->where('status', 'success')->where('type', 'xarajat')->sum('amount');
+            $profit = $finalPayments - ($totalSalary + $totalExpense);
+            $paymentsData[] = (float)$finalPayments;
+            $salaryData[] = (float)$totalSalary;
+            $expenseData[] = (float)$totalExpense;
+            $profitData[] = (float)$profit;
+        }
+        return view('chart.chart', compact('months', 'paymentsData', 'salaryData', 'expenseData', 'profitData'));
     }
+    
 }
