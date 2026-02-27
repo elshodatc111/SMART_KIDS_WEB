@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\Emploes\EmploesDavomadController;
 use App\Http\Controllers\EmploesController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KassaController;
 use App\Http\Controllers\KidController;
 use App\Http\Controllers\KidDavomadController;
@@ -19,7 +20,7 @@ Route::get('/login', [AuthWebController::class, 'showLogin'])->name('login');  /
 Route::post('/login', [AuthWebController::class, 'login']); // Login Post
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () { return view('index'); })->name('home'); // Bosh sahifa
+    Route::get('/', [HomeController::class, 'home'])->name('home'); // Bosh sahifa
     Route::post('/logout', [AuthWebController::class, 'logout'])->name('logout'); // Logindan chiqish
     Route::get('/emploes', [EmploesController::class, 'index'])->name('emploes');  // Barcha hodimlar
     Route::get('/emploes/show/{id}', [EmploesController::class, 'show'])->name('emploes_show');  // Hodim haqida
