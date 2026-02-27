@@ -6,6 +6,7 @@ use App\Http\Requests\Kid\StoreKidPaymentRequest;
 use App\Http\Requests\Kid\StoreKidRequest;
 use App\Http\Requests\Kid\UpdateKidRequest;
 use App\Models\GroupKid;
+use App\Models\GroupPaymart;
 use App\Models\Kassa;
 use App\Models\Kid;
 use App\Models\KidDavomad;
@@ -44,8 +45,8 @@ class KidController extends Controller{
         $paymarts = KidPayment::where('kid_id', $id)->orderby('id','desc')->get();
         $groups = GroupKid::where('kid_id', $id)->get();
         $davomad = KidDavomad::where('kid_id', $id)->get();
-        //dd($davomad);
-        return view('kid.show',compact('kid','notes','paymarts','groups','davomad'));
+        $group_pay = GroupPaymart::where('kid_id',$id)->get();
+        return view('kid.show',compact('kid','notes','paymarts','groups','davomad','group_pay'));
     }
     
     public function kidUpdate(UpdateKidRequest $request){
@@ -78,7 +79,7 @@ class KidController extends Controller{
         }else{
             $this->createTypeDiscount($data);
         }
-        return redirect()->back()->with('success', "To'lov saqlanildi");
+        return redirect()->back()->with('success', __('bolalar_show.tolov_saqlandi'));
     }
 
     protected function createTypePayment($data){
@@ -150,7 +151,7 @@ class KidController extends Controller{
     public function cancelPayment(int $id){
         $payment = KidPayment::findOrFail($id);
         if($payment->payment_status === 'canceled'){
-            return redirect()->back()->with('error', "To'lov allaqachon bekor qilingan");
+            return redirect()->back()->with('error', __('bolalar_show.tolov_allaqachin_bekor_qilingan'));
         }
         DB::transaction(function () use ($payment) {
             $payment->update(['payment_status' => 'canceled']);
@@ -163,13 +164,13 @@ class KidController extends Controller{
             $payment->comment = $payment->comment." (".auth()->user()->name.")";   
             $payment->save();
         });
-        return redirect()->back()->with('success', "To'lov bekor qilindi");
+        return redirect()->back()->with('success', __('bolalar_show.tolov_bekor_qilindi'));
     }
 
     public function successPayment(int $id){
         $payment = KidPayment::findOrFail($id);
         if($payment->payment_status === 'success'){
-            return redirect()->back()->with('error', "To'lov allaqachon tasdiqlangan");
+            return redirect()->back()->with('error', __('bolalar_show.tolov_allaqachon_tasdiqlangan'));
         }
         DB::transaction(function () use ($payment) {
             $payment->update(['payment_status' => 'success']);
@@ -196,7 +197,28 @@ class KidController extends Controller{
                 'admin_id' => auth()->id(),
             ]);
         });
-        return redirect()->back()->with('success', "To'lov tasdiqlandi");
+        return redirect()->back()->with('success', __('boalar_show.tolov_tasdiqlandi'));
+    }
+
+    public function kidDelete(Request $request){
+        $request->validate([
+            'id' => 'required|integer|exists:kids,id',
+        ]);
+        DB::transaction(function () use ($request) {
+            $kid = Kid::findOrFail($request->id);
+            $kid->update([
+                'status' => 'delete'
+            ]);
+            $groupKid = GroupKid::where('kid_id', $kid->id)->where('status', 'active')->first();
+            if ($groupKid) {
+                $groupKid->update([
+                    'status'        => 'deleted',
+                    'end_date'      => now(),
+                    'end_admin_id'  => auth()->id(),
+                ]);
+            }
+        });
+        return redirect()->route('kids')->with('success', __('boalar_show.bola_ochirildi'));
     }
 
 }

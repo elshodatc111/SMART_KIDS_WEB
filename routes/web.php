@@ -44,12 +44,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/lead/child/create/note', [LeadKidController::class, 'createEslatmaLeadWebKid'])->name('child_lead_create_note'); // Yangi eslatma
     Route::post('/lead/child/cancel', [LeadKidController::class, 'cancel'])->name('child_lead_cancel'); // Yangi eslatma
     Route::post('/lead/child/success', [LeadKidController::class, 'store'])->name('child_lead_success'); // Yangi eslatma
-
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');  // Profile Page
     Route::post('/profile/password/update', [ProfileController::class, 'update'])->name('profile_password_update'); // Passport Update Post
     Route::get('/kassa', [KassaController::class, 'kassa'])->name('kassa'); // Kassa Page
     Route::get('/kids', [KidController::class, 'kids'])->name('kids'); // Barcha bolalar
     Route::post('/kids/create', [KidController::class, 'store'])->name('kids_create'); // Yangi bola qo'shish
+    Route::post('/kids/delete', [KidController::class, 'kidDelete'])->name('kids_delete'); // Bolani ochirish
     Route::post('/kids/update', [KidController::class, 'kidUpdate'])->name('kids_update'); // Yangi bola qo'shish
     Route::post('/kids/note/create', [KidController::class, 'noteCreate'])->name('kids_note_create'); // Yangi izoh qoldirish
     Route::post('/kids/payment/create', [KidController::class, 'createPayment'])->name('kids_payment_create'); // To'lov qilish
