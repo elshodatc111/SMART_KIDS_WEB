@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LeadEmployee;
+use App\Models\LeadKid;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller{
@@ -11,7 +12,8 @@ class ReportController extends Controller{
         return view('report.hodim_vakansiya', compact('leads'));
     }
     public function qabulArizalar(){
-        return view('report.bolalar_arizalari');
+        $leads = LeadKid::get();
+        return view('report.bolalar_arizalari',compact('leads'));
     }
     public function barchaGuruhlar(){
         return view('report.barcha_guruhlar');

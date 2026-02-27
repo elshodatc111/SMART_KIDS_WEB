@@ -1,50 +1,68 @@
 @extends('layouts.admin')
-@section('title', 'Bosh sahifa | NiceAdmin')
+@section('title', __('menu.barcha_bolalar_tolovlari') )
 @section('content')
   <div class="pagetitle">
-    <h1>Dashboard</h1>
+    <h1>{{ __('menu.barcha_bolalar_tolovlari') }}</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('menu.dashboard') }}</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item active">{{ __('menu.barcha_bolalar_tolovlari') }}</li>
       </ol>
     </nav>
-  </div><section class="section dashboard">
-    <div class="row">
-
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Hush kelibsiz</h5>
-            <p>Siz tizimga muvaffaqiyatli kirdingiz. Bu yerda sizning asosiy statistikalaringiz ko'rinadi.</p>
+  </div>
+  <section class="section dashboard">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <h5 class="card-title">{{ __('menu.barcha_bolalar_tolovlari') }}</h5>
+          </div>
+          <div class="col-6" style="text-align: right">
+            <button onclick="exportTableToExcel()" class="btn btn-outline-success mt-2">
+                <i class="bi bi-file-earmark-spreadsheet"></i> Yuklash
+            </button>
+          </div>
+        </div>
+        <div class="notes-wrapper" style="max-height: 500px; overflow-y: auto; overflow-x: hidden;">
+          <div class="table-responsive">
+            <table id="leadsTable" class="table table-bordered" style="font-size: 12px">
+              <thead class="text-center">
+                <tr>
+                  <th>#</th>
+                  <th>FIO</th>
+                  <th>Telefon raqam</th>
+                  <th>Qo'shimcha telefon raqam</th>
+                  <th>Yashash manzili</th>
+                  <th>Tugilgan kuni</th>
+                  <th>Malumoti</th>
+                  <th>O'qish joyi</th>
+                  <th>Oldingi ish joyi</th>
+                  <th>Ishlashdan maqsad</th>
+                  <th>Kutayotgan ish haqi</th>
+                  <th>Lovozimga nomzod</th>
+                  <th>Status</th>
+                  <th>Biz haqimizda</th>
+                  <th>Admin hodim haqida fikri</th>
+                  <th>Oxirgi yangilanish</th>
+                  <th>Ariza vaqti</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-
-<button data-bs-toggle="modal" data-bs-target="#parol_yangilash">sasa</button>
-  <!-- Arizani bekor qilish -->
-<div class="modal" id="parol_yangilash" tabindex="-1">
-  <form action="{{ route('emploes_password_update') }}" method="post">
-    @csrf 
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{ __('emploes_page.parolni_yangilash')}}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          sasa
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('emploes_page.cancel') }}</button>
-          <button type="submit" class="btn btn-primary">{{ __('emploes_page.save') }}</button>
-        </div>
-      </div>
-    </div>
-  </form>
-</div>
+<script>
+  function exportTableToExcel() {
+      var table = document.getElementById("leadsTable");
+      var wb = XLSX.utils.table_to_book(table, { sheet: "tolovlar" });
+      var fileName = "barcha_bolalar_tolovlari" + new Date().toISOString().slice(0, 10) + ".xlsx";
+      XLSX.writeFile(wb, fileName);
+  }
+</script>
 @endsection
