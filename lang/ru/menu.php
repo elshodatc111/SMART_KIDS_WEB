@@ -13,4 +13,13 @@ return [
     'child_leads' => 'Заявки на прием',
     'finance' => 'Финансы',
     'statistics' => 'Статистика',
+    'hisobot' => "Отчёт",
+    'barcha_hodim_vakansiya_arizalari' => "Все заявки сотрудников на вакансии",
+    'barcha_bolalar_qabul_arizalari' => "Все заявки на приём детей",
+    'barcha_guruhlar' => "Все группы",
+    'barcha_bolalar' => "Все дети",
+    'barcha_bolalar_tolovlari' => "Все платежи детей",
+    'barcha_hodimlar' => "Все сотрудники",
+    'barcha_hodimlar_ish_haqi_tolovlari' => "Все выплаты заработной платы сотрудникам",
+    'barcha_balans_tarixi' => "Вся история баланса",
 ];

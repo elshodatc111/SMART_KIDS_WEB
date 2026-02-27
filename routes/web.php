@@ -5,20 +5,21 @@ use App\Http\Controllers\api\Lead\LeadKidController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\Emploes\EmploesDavomadController;
-use App\Http\Controllers\EmploesController;
-use App\Http\Controllers\GroupController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\KassaController;
-use App\Http\Controllers\KidController;
-use App\Http\Controllers\KidDavomadController;
-use App\Http\Controllers\MoliyaController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\{
+        EmploesController,
+        GroupController,
+        HomeController,
+        KassaController,
+        KidController,
+        KidDavomadController,
+        MoliyaController,
+        ProfileController,
+    ReportController,
+};
 
 Route::get('lang/{locale}', function ($locale) {if (in_array($locale, ['uz', 'ru'])) {session()->put('locale', $locale);}return redirect()->back();})->name('changeLang');
-
 Route::get('/login', [AuthWebController::class, 'showLogin'])->name('login');  // Login page
 Route::post('/login', [AuthWebController::class, 'login']); // Login Post
-
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'home'])->name('home'); // Bosh sahifa
     Route::post('/logout', [AuthWebController::class, 'logout'])->name('logout'); // Logindan chiqish
@@ -77,7 +78,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/kids/davomad', [KidDavomadController::class, 'showAllGroups'])->name('kid_davomad_show_all_groups'); // Show All Groups for Kid Davomad
     Route::get('/kids/davomads/{id}', [KidDavomadController::class, 'show'])->name('kid_davomad_show'); // Show Group Davomad
     Route::post('/kids/davomad/store', [KidDavomadController::class, 'storeAttendance'])->name('kid_davomad_store'); // Store Attendance
-
+    // Xisobotlar
+    Route::get('report/vakansiya', [ReportController::class, 'hodimVakansiyalari'])->name('report_vakansiya');
+    Route::get('report/qabul', [ReportController::class, 'qabulArizalar'])->name('report_bolalar_qabul');
+    Route::get('report/guruhlar', [ReportController::class, 'barchaGuruhlar'])->name('report_guruhlar');
+    Route::get('report/bolalar', [ReportController::class, 'barchaBolalar'])->name('report_barcha_bolalar');
+    Route::get('report/tolovlar', [ReportController::class, 'barchaNolalarTolovlari'])->name('report_bolalar_tolovlari');
+    Route::get('report/hodimlar', [ReportController::class, 'barchaHodimlar'])->name('report_barcha_hodimlar');
+    Route::get('report/hodim/ish/haqi', [ReportController::class, 'barchaHodimIshHaqlari'])->name('report_hodim_ish_haqi');
+    Route::get('report/moliya', [ReportController::class, 'moliyaTarixi'])->name('report_moliya');
 
     
 });

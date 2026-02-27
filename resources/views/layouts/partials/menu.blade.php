@@ -75,6 +75,54 @@
     <span>{{ __('menu.finance') }}</span>
   </a>
 </li>
+    
+<li class="nav-item">
+  <a class="nav-link {{ request()->routeIs(['report_vakansiya','report_bolalar_qabul','report_guruhlar','report_barcha_bolalar','report_bolalar_tolovlari','report_barcha_hodimlar','report_hodim_ish_haqi','report_moliya',]) ? '' : 'collapsed' }}" data-bs-target="#report-nav" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-file-earmark-bar-graph"></i><span>{{ __('menu.hisobot') }}</span><i class="bi bi-chevron-down ms-auto"></i>
+  </a>
+  <ul id="report-nav" class="nav-content collapse {{ request()->routeIs(['report_vakansiya','report_bolalar_qabul','report_guruhlar','report_barcha_bolalar','report_bolalar_tolovlari','report_barcha_hodimlar','report_hodim_ish_haqi','report_moliya']) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
+    <li>
+      <a href="{{ route('report_vakansiya') }}" class="nav-link {{ request()->routeIs(['report_vakansiya']) ? '' : 'collapsed' }}">
+        <i class="bi bi-dot"></i><span>{{ __('menu.barcha_hodim_vakansiya_arizalari') }}</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('report_bolalar_qabul') }}" class="nav-link {{ request()->routeIs(['report_bolalar_qabul']) ? '' : 'collapsed' }}">
+        <i class="bi bi-dot"></i><span>{{ __('menu.barcha_bolalar_qabul_arizalari') }}</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('report_guruhlar') }}" class="nav-link {{ request()->routeIs(['report_guruhlar']) ? '' : 'collapsed' }}">
+        <i class="bi bi-dot"></i><span>{{ __('menu.barcha_guruhlar') }}</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('report_barcha_bolalar') }}" class="nav-link {{ request()->routeIs(['report_barcha_bolalar']) ? '' : 'collapsed' }}">
+        <i class="bi bi-dot"></i><span>{{ __('menu.barcha_bolalar') }}</span>
+      </a>
+    </li>    
+    <li>
+      <a href="{{ route('report_bolalar_tolovlari') }}" class="nav-link {{ request()->routeIs(['report_bolalar_tolovlari']) ? '' : 'collapsed' }}">
+        <i class="bi bi-dot"></i><span>{{ __('menu.barcha_bolalar_tolovlari') }}</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('report_barcha_hodimlar') }}" class="nav-link {{ request()->routeIs(['report_barcha_hodimlar']) ? '' : 'collapsed' }}">
+        <i class="bi bi-dot"></i><span>{{ __('menu.barcha_hodimlar') }}</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('report_hodim_ish_haqi') }}" class="nav-link {{ request()->routeIs(['report_hodim_ish_haqi']) ? '' : 'collapsed' }}">
+        <i class="bi bi-dot"></i><span>{{ __('menu.barcha_hodimlar_ish_haqi_tolovlari') }}</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('report_moliya') }}" class="nav-link {{ request()->routeIs(['report_moliya']) ? '' : 'collapsed' }}">
+        <i class="bi bi-dot"></i><span>{{ __('menu.barcha_balans_tarixi') }}</span>
+      </a>
+    </li>
+  </ul>
+</li>
 
 <li class="nav-item">
   <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
