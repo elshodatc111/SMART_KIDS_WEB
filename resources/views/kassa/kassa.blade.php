@@ -15,7 +15,7 @@
 
 <section class="section dashboard">
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6">
             <div class="card info-card">
                 <div class="card-body pt-3">
                     <div class="row g-3">
@@ -59,7 +59,7 @@
             </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-lg-6">
             <div class="card info-card">
                 <div class="card-body pt-3">
                     <div class="row g-3">

@@ -12,33 +12,33 @@ class StoreLeadKidRequest extends FormRequest{
 
     public function rules(): array{
         return [
+            // Bola FIO
             'child_full_name' => 'required|string|max:255',
-            'child_dob' => 'required|date|before:today',
-            'certificate_serial' => [
-                'required', 
-                'string', 
-                'max:50', 
-                Rule::unique('lead_kids', 'certificate_serial') // Takrorlanishni oldini oladi
-            ],
+            // Guvohnoma raqam
+            'certificate_serial' => ['required', 'string','max:50',],
+            // Tugilgan kuni
+            'tkun' => 'required|date',
+            // Jinsi
             'gender' => ['required', Rule::in(['male', 'female'])],
+            // Otasi yoki onasining fio
             'parent_full_name' => 'required|string|max:255',
+            // Telefon raqam
             'phone1' => 'required|string|max:20',
+            // Qo'shimcha telefon raqam
             'phone2' => 'nullable|string|max:20',
+            // Yashash manzili
             'address' => 'required|string|max:500',
-            'medical_conditions' => 'nullable|string',
-            'target_group' => ['nullable', Rule::in(['small', 'middle', 'large', 'pre_school'])],
-            'expected_arrival_date' => 'nullable|date|after_or_equal:today',
+            // Biz haqimizda
             'source' => ['nullable', Rule::in(['instagram', 'telegram', 'friend', 'other'])],
+            // Qoshimcha izoh
             'admin_note' => 'nullable|string',
         ];
     }
-
+    
     public function messages(): array{
         return [
             'child_full_name.required' => 'Bolaning ism-sharifi majburiy.',
-            'certificate_serial.unique' => 'Ushbu guvohnoma raqami bilan bola allaqachon ro‘yxatga olingan.',
-            'child_dob.before' => 'Tug‘ilgan sana bugundan oldingi sana bo‘lishi kerak.',
-            'expected_arrival_date.after_or_equal' => 'Kelish sanasi bugundan keyin bo‘lishi shart.',
+            'tkun.before' => 'Tug‘ilgan sana bugundan oldingi sana bo‘lishi kerak.',
         ];
     }
 }

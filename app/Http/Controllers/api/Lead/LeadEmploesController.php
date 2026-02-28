@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class LeadEmploesController extends Controller{
 
-    public function createLeadEmploes(StoreLeadEmployeeRequest $request){
+    public function createLeadEmploes(StoreLeadEmployeeRequest $request){ 
         $data = $request->validated();    
         $lead = LeadEmployee::create($data);
         return response()->json([

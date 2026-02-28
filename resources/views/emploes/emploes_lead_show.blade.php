@@ -70,7 +70,7 @@
                     @endif
                   </div>
                   <div class="col-6 my-1">{{ __('lead_emploes_page.kutilayotgan_ish_haqi') }}</div>
-                  <div class="col-6 my-1" style="text-align: right">{{ number_format($user->expected_salary, 0, '.', ' ') }} UZS</div>
+                  <div class="col-6 my-1" style="text-align: right">{{$user->expected_salary}} UZS</div>
                   <div class="col-6 my-1">{{ __('lead_emploes_page.ishlashdan_maqsad') }}</div>
                   <div class="col-6 my-1" style="text-align: right">{{ $user->career_objective }}</div>
                   <div class="col-6 my-1">{{ __('lead_emploes_page.qaysi_lavozimga') }}</div>
