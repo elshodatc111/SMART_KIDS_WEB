@@ -15,7 +15,7 @@
                 <span class="badge bg-primary badge-number">@if($header_tkun>0) {{ $header_tkun }} @endif</span>
             </a>
         </li>
-        
+         
         <!-- Til yangilash -->
         <li class="nav-item dropdown pe-3">
             <a class="nav-link nav-icon d-flex align-items-center" href="#" data-bs-toggle="dropdown">

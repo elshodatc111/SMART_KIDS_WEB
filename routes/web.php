@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\Emploes\EmploesDavomadController;
 use App\Http\Controllers\{
-        EmploesController,
-        GroupController,
-        HomeController,
-        KassaController,
-        KidController,
-        KidDavomadController,
-        MoliyaController,
-        ProfileController,
+    EmploesController,
+    GroupController,
+    HomeController,
+    KassaController,
+    KidController,
+    KidDavomadController,
+    MoliyaController,
+    ProfileController,
     ReportController,
     ChartController,
 };
