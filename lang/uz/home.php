@@ -10,4 +10,18 @@ return [
     'bugun_davomad_olinmadi' => "Bugun davomat olinmadi",
     'kechikdi' => "Kechikdi",
     'kunlik_hodimlar_davomadi' => "Kunlik bolalar davomati",
+    'qarzdorlar' => "Qarzdorlar",
+    'soni' => "Soni",
+    'qarzdorlik' => "Qarzdorlik",
+    'summasi' => "Summasi",
+    'qarzdorlar_ruyhati' => "Qarzdorlar ro‘yxati",
+    'fio' => "F.I.O.",
+    'tkun' => "Tug‘ilgan sanasi",
+    'guvohnoma' => "Guvohnoma seriyasi",
+    'holati' => "Holati",
+    'royhatdan_otgan' => "Ro‘yxatdan o‘tgan",
+    'aktiv' => "Faol",
+    'noaktiv' => "Faol emas",
+    'qarzdorlar_mavjud_emas' => "Qarzdorlar mavjud emas.",
+    
 ];

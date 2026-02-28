@@ -105,7 +105,13 @@ class HomeController extends Controller{
         $aktivKid = count(Kid::where('status','true')->get());
         $guruhDavomad = $this->guruhDavomad();
         $chart = $this->kunlikDavomad();
-        return view('index',compact('hodimlar','davomad','aktivKid','guruhDavomad','chart'));
+        $debitQuery = Kid::whereIn('status', ['true', 'false'])->where('amount', '<', 0)->orderby('amount','asc');
+        $debits = [
+            'kids'  => $debitQuery->get(),            // Model obyektlari (agar ro'yxat kerak bo'lsa)
+            'count' => $debitQuery->count(),          // Soni
+            'summa' => $debitQuery->sum('amount'),    // Miqdorlar yig'indisi
+        ];
+        return view('index',compact('hodimlar','davomad','aktivKid','guruhDavomad','chart','debits'));
     }
 
 }

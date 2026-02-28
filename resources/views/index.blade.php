@@ -76,6 +76,81 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-3">
+        <div class="card info-card sales-card">
+          <div class="card-body">
+            <h5 class="card-title">{{ __('home.qarzdorlar') }} <span>| {{ __('home.soni') }}</span></h5>
+            <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                <i class="bi bi-people"></i>
+              </div>
+              <div class="ps-3">
+                <h6>{{ $debits['count'] }} ta</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card info-card revenue-card">
+          <div class="card-body">
+            <h5 class="card-title">{{ __('home.qarzdorlik') }} <span>| {{ __('home.summasi')}}</span></h5>
+            <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                <i class="bi bi-currency-dollar"></i>
+              </div>
+              <div class="ps-3">
+                <h6>{{ number_format($debits['summa'], 0, '.', ' ') }} UZS</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="card  info-card">
+          <div class="card-body">
+            <h2 class="card-title">{{ __('home.qarzdorlar_ruyhati') }}</h2>
+            <div class="notes-wrapper" style="max-height: 250px; overflow-y: auto; overflow-x: hidden;min-height:250px;">
+              <div class="table-responsive">
+                <table class="table table-bordered" style="font-size: 12">
+                  <thead>
+                    <tr class="text-center">
+                      <th>#</th>
+                      <th>{{ __('home.fio') }}</th>
+                      <th>{{ __('home.tkun') }}</th>
+                      <th>{{ __('home.guvohnoma') }}</th>
+                      <th>{{ __('home.qarzdorlik') }}</th>
+                      <th>{{ __('home.holati') }}</th>
+                      <th>{{ __('home.royhatdan_otgan') }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @forelse($debits['kids'] as $item)
+                    <tr>
+                      <td class="text-center">{{ $loop->iteration }}</td>
+                      <td><a href="{{ route('kid_show',$item->id) }}">{{ $item->child_full_name }}</a></td>
+                      <td class="text-center">{{ $item->tkun->format('d.m.Y') }}</td>
+                      <td>{{ $item->certificate_serial }}</td>
+                      <td class="text-center">{{ number_format($item->amount, 0, '.', ' ') }} UZS</td>
+                      <td class="text-center">
+                        @if($item->status==true)
+                          <span class="text-success">{{ __('home.aktiv') }}</span>
+                        @else
+                          <span class="text-danger">{{ __('home.noaktiv') }}</span> 
+                        @endif
+                      </td>
+                      <td class="text-center">{{ $item->created_at }}</td>
+                    </tr>
+                    @empty
+                    <tr>
+                      <td colspan="7" class="text-center">{{ __('home.qarzdorlar_mavjud_emas') }}</td>
+                    </tr>
+                    @endforelse
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="card">
       <div class="card-body">
