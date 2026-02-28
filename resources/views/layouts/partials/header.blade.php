@@ -2,7 +2,7 @@
     <ul class="d-flex align-items-center list-unstyled mb-0">
         <!-- Lead -->        
         <li class="nav-item dropdown">
-            <a class="nav-link nav-icon" href="{{ route('emploes_lead') }}">
+            <a class="nav-link nav-icon" href="{{ route('child_lead') }}">
                 <i class="bi bi-bell"></i>
                 <span class="badge bg-primary badge-number">@if($header_leads>0) {{ $header_leads }} @endif</span>
             </a>
@@ -10,7 +10,7 @@
 
         <!-- Tyg'ilgan kunlar -->        
         <li class="nav-item dropdown">
-            <a class="nav-link nav-icon" href="#">
+            <a class="nav-link nav-icon" href="{{ route('tkun') }}">
                 <i class="bi bi-cake2"></i>
                 <span class="badge bg-primary badge-number">@if($header_tkun>0) {{ $header_tkun }} @endif</span>
             </a>

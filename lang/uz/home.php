@@ -23,5 +23,16 @@ return [
     'aktiv' => "Faol",
     'noaktiv' => "Faol emas",
     'qarzdorlar_mavjud_emas' => "Qarzdorlar mavjud emas.",
-    
+    'bugun' => "Bugun",
+    'ertaga' => "Ertaga",
+    'tkun' => "Tug‘ilgan kunlar",
+    'drektor' => "Direktor",
+    'admin' => "Administrator",
+    'katta_tarbiyachi' => "Tarbiyachi",
+    'kichik_tarbiyachi' => "Yordamchi tarbiyachi",
+    'oshpaz' => "Oshpaz",
+    'teacher' => "O‘qituvchi",
+    'farrosh' => "Farrosh",
+    'hodim' => "Xodim",
+
 ];

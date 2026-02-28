@@ -114,4 +114,29 @@ class HomeController extends Controller{
         return view('index',compact('hodimlar','davomad','aktivKid','guruhDavomad','chart','debits'));
     }
 
+    public function tkun(){
+        $today = Carbon::now();
+        $tomorrow = Carbon::now()->addDay();
+        $usersToday = User::where('status', 'active')->whereMonth('birthday', $today->month)->whereDay('birthday', $today->day)->get(['name', 'phone', 'type as role'])->map(fn($item) => $this->formatData($item, 'Hodim', 'today'));
+        $kidsToday = Kid::where('status', '!=', 'delete')->with(['activeGroup.group'])->whereMonth('tkun', $today->month)->whereDay('tkun', $today->day)->get()->map(fn($item) => $this->formatData($item, 'Bola', 'today'));
+        $usersTomorrow = User::where('status', 'active')->whereMonth('birthday', $tomorrow->month)->whereDay('birthday', $tomorrow->day)->get(['name', 'phone', 'type as role'])->map(fn($item) => $this->formatData($item, 'Hodim', 'tomorrow'));
+        $kidsTomorrow = Kid::where('status', '!=', 'delete')->with(['activeGroup.group'])->whereMonth('tkun', $tomorrow->month)->whereDay('tkun', $tomorrow->day)->get()->map(fn($item) => $this->formatData($item, 'Bola', 'tomorrow'));
+        $birthdays = $usersToday->concat($kidsToday)->concat($usersTomorrow)->concat($kidsTomorrow);
+        return view('tkun.tkun', compact('birthdays'));
+    }
+
+    private function formatData($item, $category, $day){
+        $groupName = null;
+        if ($category === 'Bola') {$groupName = $item->activeGroup->group->group_name ?? 'Guruhsiz';}
+        return [
+            'name'     => $item->name ?? $item->child_full_name,
+            'phone'    => $item->phone ?? $item->phone1,
+            'role'     => $item->role ?? ($groupName ? "Guruh: $groupName" : "Bola"),
+            'category' => $category,
+            'day'      => $day,
+            'group'    => $groupName
+        ];
+    }
+
+
 }

@@ -40,4 +40,7 @@ class Kid extends Model{
         return $this->hasMany(GroupKid::class, 'kid_id');
     }
 
+    public function activeGroup(){
+        return $this->hasOne(GroupKid::class, 'kid_id')->where('status', 'active')->with('group');
+    }
 }

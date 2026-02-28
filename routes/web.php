@@ -23,6 +23,7 @@ Route::get('/login', [AuthWebController::class, 'showLogin'])->name('login');  /
 Route::post('/login', [AuthWebController::class, 'login']); // Login Post
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'home'])->name('home'); // Bosh sahifa
+    Route::get('/tkun', [HomeController::class, 'tkun'])->name('tkun'); // Tug'ilgan kunlar
     Route::post('/logout', [AuthWebController::class, 'logout'])->name('logout'); // Logindan chiqish
     Route::get('/emploes', [EmploesController::class, 'index'])->name('emploes');  // Barcha hodimlar
     Route::get('/emploes/show/{id}', [EmploesController::class, 'show'])->name('emploes_show');  // Hodim haqida
