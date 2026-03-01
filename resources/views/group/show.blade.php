@@ -41,7 +41,9 @@
               <button class="btn btn-outline-primary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#taxrirlash"><i class="bi bi-pencil"></i> {{ __('groups.edit_group') }}</button>
               <button class="btn btn-outline-info w-100 mb-2" data-bs-toggle="modal" data-bs-target="#yangi_tarbiyachi"><i class="bi bi-person-plus"></i> {{ __('groups.add_teacher') }}</button>
               <button class="btn btn-outline-warning w-100 mb-2" data-bs-toggle="modal" data-bs-target="#yangi_bola"><i class="bi bi-person-plus"></i> {{ __('groups.add_kid') }}</button>
+              @if(@auth()->user()->type == 'drektor')
               <button class="btn btn-outline-danger w-100 mb-2" data-bs-toggle="modal" data-bs-target="#guruhni_ochirish"><i class="bi bi-trash"></i> {{ __('groups.delete_group') }}</button>
+              @endif
             </div>
           </div>
           
@@ -90,13 +92,13 @@
           </div>
         </div>
         <div class="col-lg-9">
-          
           @foreach($attendanceData as $type => $monthInfo)
         <div class="card">
           <div class="card-body">
             <h5 class="card-title text-primary">
               {{ $type == 'current' ? __('kid_davomad_page.joriy_oy') : __('kid_davomad_page.otgan_oy') }} | <span class="text-muted">{{ $monthInfo['month_name'] }}</span>
             </h5>
+            <div class="notes-wrapper" style="max-height: 500px; overflow-y: auto; overflow-x: hidden;">
             <div class="table-responsive">
               <table class="table table-bordered text-center align-middle" style="font-size: 12px;">
                 <thead class="bg-light">
@@ -136,6 +138,7 @@
                   @endforeach
                 </tbody>
               </table>
+            </div>
             </div>
           </div>
         </div>
