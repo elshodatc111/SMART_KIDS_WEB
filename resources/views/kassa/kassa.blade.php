@@ -148,6 +148,7 @@
                                     <td class="text-center">{{ $item->created_at }}</td>
                                     <td class="d-none d-md-table-cell text-center small">{{ optional($item->meneger)->name ?? 'N/A' }}</td>
                                     <td class="d-flex gap-1 text-center justify-content-center">
+                                      @if(@auth()->user()->type=='drektor')
                                         <form action="{{ route('moliya_pending_success') }}" method="post">
                                             @csrf 
                                             <input type="hidden" name="id" value="{{ $item->id }}">
@@ -155,6 +156,7 @@
                                                 <i class="bi bi-check-lg"></i>
                                             </button>
                                         </form>
+                                      @endif
                                         <form action="{{ route('moliya_pending_canceled')  }}" method="post">
                                             @csrf 
                                             <input type="hidden" name="id" value="{{ $item->id }}">

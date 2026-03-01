@@ -9,7 +9,8 @@
           <li class="breadcrumb-item active">{{ __('menu.emploes') }}</li>
         </ol>
       </nav>
-    </div><section class="section dashboard">
+    </div>
+    <section class="section dashboard">
       <div class="row">
         <div class="col-lg-12">
           <div class="card">
@@ -22,6 +23,7 @@
                   <button class="btn btn-outline-primary float-end my-3" data-bs-toggle="modal" data-bs-target="#create_emploes"><i class="bi bi-plus-circle"></i> {{ __('emploes_page.create') }}</button>
                 </div>
               </div>
+              <div class="notes-wrapper" style="max-height: 500px; overflow-y: auto; overflow-x: hidden;">
               <div class="table-responsive">
                 <table class="table table-bordered" style="font-size: 14px">
                   <thead>
@@ -77,6 +79,7 @@
                     @endforelse
                   </tbody>
                 </table>
+              </div>
               </div>
             </div>
           </div>
