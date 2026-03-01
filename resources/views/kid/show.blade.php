@@ -66,7 +66,9 @@
                 @if($kid->status!='delete')
                 <div class="col-12">
                   <button class="btn btn-outline-primary mt-2 w-100" data-bs-toggle="modal" data-bs-target="#taxrirlash"><i class="bi bi-pencil"></i> {{ __('bolalar_show.taxrirlash')}}</button>
+                  @if(@auth()->user()->type == 'drektor')
                   <button class="btn btn-outline-danger mt-2 w-100" data-bs-toggle="modal" data-bs-target="#delete"><i class="bi bi-trash"></i> {{ __('bolalar_show.bolani_ochirish')}}</button>
+                  @endif
                 </div>
                 @endif
               </div>

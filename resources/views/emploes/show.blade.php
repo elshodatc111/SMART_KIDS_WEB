@@ -76,7 +76,9 @@
               </table>              
               <button class="btn btn-outline-warning w-100"  data-bs-toggle="modal" data-bs-target="#taxrirlash"><i class="bi bi-pencil-square me-2"></i>{{ __('emploes_page.taxrirlash') }}</button>
               <button class="btn btn-outline-info my-2 w-100"  data-bs-toggle="modal" data-bs-target="#parol_yangilash"><i class="bi bi-key me-2"></i>{{ __('emploes_page.parolni_yangilash') }}</button>
+              @if(@auth()->user()->type=='drektor')
               <button class="btn btn-outline-danger w-100"  data-bs-toggle="modal" data-bs-target="#hodim_ochirish"><i class="bi bi-trash3 me-2"></i>{{ __('emploes_page.hodimni_ochirish') }}</button>
+              @endif
             </div>
           </div>
         </div>

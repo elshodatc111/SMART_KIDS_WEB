@@ -46,7 +46,7 @@
                     </button>
                 </div>
             </div>
-            
+            <div class="notes-wrapper" style="max-height: 500px; overflow-y: auto; overflow-x: hidden;">
             <div class="table-responsive mt-3">
                 <table class="table table-bordered" style="font-size:13px;">
                     <thead>
@@ -89,12 +89,14 @@
                     </tbody>
                 </table>
             </div>
+            </div>
         </div>
     </div>
 
     <div class="card recent-sales overflow-auto">
         <div class="card-body">
             <h5 class="card-title">{{ __('emploes_davomad_page.otgan_oy') }} <span>| {{ $prevMonth->translatedFormat('F, Y') }}</span></h5>
+            <div class="notes-wrapper" style="max-height: 500px; overflow-y: auto; overflow-x: hidden;">
             <div class="table-responsive mt-2">
                 <table class="table table-bordered" style="font-size:13px;">
                     <thead>
@@ -136,6 +138,7 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     </div>

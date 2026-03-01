@@ -19,6 +19,7 @@
             <h5 class="card-title text-primary">
               {{ $type == 'current' ? __('kid_davomad_page.joriy_oy') : __('kid_davomad_page.otgan_oy') }} | <span class="text-muted">{{ $monthInfo['month_name'] }}</span>
             </h5>
+            <div class="notes-wrapper" style="max-height: 500px; overflow-y: auto; overflow-x: hidden;">
             <div class="table-responsive">
               <table class="table table-bordered text-center align-middle" style="font-size: 12px;">
                 <thead class="bg-light">
@@ -58,6 +59,7 @@
                   @endforeach
                 </tbody>
               </table>
+            </div>
             </div>
           </div>
         </div>

@@ -68,7 +68,7 @@
     </li>
   </ul>
 </li>
-
+@if(@auth()->user()->type == 'drektor')
 <li class="nav-item">
   <a class="nav-link {{ request()->routeIs(['moliya']) ? '' : 'collapsed' }}" href="{{ route('moliya') }}">
     <i class="bi bi-bank"></i>
@@ -151,3 +151,4 @@
     </li>
   </ul>
 </li>
+@endif
